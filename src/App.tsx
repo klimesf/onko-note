@@ -1,9 +1,10 @@
 import { Disclosure } from '@headlessui/react';
+import ChemoterapieForm from './ChemoterapieForm';
 
 const navigation = [
   { name: 'Chemoterapie', href: '#', current: true },
   { name: 'Biopsie', href: '#', current: false },
-  { name: 'Brachytherapie', href: '#', current: false },
+  { name: 'Brachyterapie', href: '#', current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -48,7 +49,7 @@ function App() {
       </header>
       <main>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          {/* Your content */}
+          <ChemoterapieForm />
         </div>
       </main>
     </div>
