@@ -1,465 +1,309 @@
-import { ChevronDownIcon } from '@heroicons/react/16/solid'
+import { useState } from 'react'
+import {
+  Field,
+  Label,
+  Input,
+  Textarea,
+  Select,
+  RadioGroup,
+  Radio,
+  Checkbox,
+} from '@headlessui/react'
 
 function ChemoterapieForm() {
+  const [gender, setGender] = useState<string>('')
+  const [chemoType, setChemoType] = useState<string>('')
+  const [cycleNumber, setCycleNumber] = useState<string>('')
+  const [cycleStartDate, setCycleStartDate] = useState<string>('')
+  const [interval, setInterval] = useState<string>('')
+  const [bloodDraw, setBloodDraw] = useState<string>('')
+  const [growthFactor, setGrowthFactor] = useState<string>('')
+  const [antiemetika, setAntiemetika] = useState<{ [key: string]: boolean }>({
+    degan: false,
+    torecan: false,
+    novetron: false,
+    granisetron: false,
+  })
+  const [gpCheck, setGpCheck] = useState<string>('')
+  const [transport, setTransport] = useState<string>('')
+  const [therapy, setTherapy] = useState<string>('')
+
+  function toggleAntiemetikum(key: keyof typeof antiemetika) {
+    setAntiemetika((prev) => ({ ...prev, [key]: !prev[key] }))
+  }
+
   return (
-		<form>
+    <form>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-						<div className="sm:col-span-2">
-              <label htmlFor="pohlavi" className="block text-sm/6 font-medium text-gray-900">
-                Pohlaví
-              </label>
-              <div className="mt-2 grid grid-cols-1">
-                <select
+            <div className="sm:col-span-2">
+              <Field>
+                <Label htmlFor="pohlavi" className="block text-sm/6 font-medium text-gray-900">
+                  Pohlaví
+                </Label>
+                <Select
                   id="pohlavi"
                   name="pohlavi"
-                  className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="mt-2 w-full rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 >
-									<option value="" disabled selected>Vyberte jednu z možností</option>
-                  <option>Muž</option>
-                  <option>Žena</option>
-                </select>
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                />
-              </div>
+                  <option value="" disabled>
+                    Vyberte jednu z možností
+                  </option>
+                  <option value="Muž">Muž</option>
+                  <option value="Žena">Žena</option>
+                </Select>
+              </Field>
             </div>
 
-						<div className="sm:col-span-4"></div>
+            <div className="sm:col-span-4"></div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="typ-chemoterapie" className="block text-sm/6 font-medium text-gray-900">
-                Typ chemoterapie
-              </label>
-              <div className="mt-2">
-                <input
+              <Field>
+                <Label htmlFor="typ-chemoterapie" className="block text-sm/6 font-medium text-gray-900">
+                  Typ chemoterapie
+                </Label>
+                <Input
                   id="typ-chemoterapie"
                   name="typ-chemoterapie"
                   type="text"
-									placeholder="Např. cDDP + etoposid"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  placeholder="Např. cDDP + etoposid"
+                  value={chemoType}
+                  onChange={(e) => setChemoType(e.target.value)}
+                  className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
-              </div>
+              </Field>
             </div>
 
             <div className="sm:col-span-1">
-              <label htmlFor="cislo-cyklu" className="block text-sm/6 font-medium text-gray-900">
-                Číslo cyklu
-              </label>
-              <div className="mt-2">
-                <input
+              <Field>
+                <Label htmlFor="cislo-cyklu" className="block text-sm/6 font-medium text-gray-900">
+                  Číslo cyklu
+                </Label>
+                <Input
                   id="cislo-cyklu"
                   name="cislo-cyklu"
                   type="number"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  value={cycleNumber}
+                  onChange={(e) => setCycleNumber(e.target.value)}
+                  className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
-              </div>
+              </Field>
             </div>
 
-						<div className="sm:col-span-2">
-							<label htmlFor="datum-zahajeni-cyklu" className="block text-sm/6 font-medium text-gray-900">
-								Datum zahájení cyklu
-							</label>
-							<div className="mt-2">
-								<input
-									id="datum-zahajeni-cyklu"
-									name="datum-zahajeni-cyklu"
-									type="date"
-									className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-								/>
-							</div>
-						</div>
+            <div className="sm:col-span-2">
+              <Field>
+                <Label htmlFor="datum-zahajeni-cyklu" className="block text-sm/6 font-medium text-gray-900">
+                  Datum zahájení cyklu
+                </Label>
+                <Input
+                  id="datum-zahajeni-cyklu"
+                  name="datum-zahajeni-cyklu"
+                  type="date"
+                  value={cycleStartDate}
+                  onChange={(e) => setCycleStartDate(e.target.value)}
+                  className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+              </Field>
+            </div>
 
-						<div className="sm:col-span-3">
-							<fieldset>
-								<legend className="text-sm/6 font-medium text-gray-900">Inverval chemoterapie</legend>
-								<div className="mt-6 space-y-2">
-									<div className="flex items-center gap-x-3">
-										<input
-											id="1-tyden"
-											name="push-notifications"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="1-tyden" className="block text-sm/6 font-normal text-gray-900">
-											1 týden
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="2-tydny"
-											name="push-notifications"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="2-tydny" className="block text-sm/6 font-normal text-gray-900">
-											2 týdny
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="3-tydny"
-											name="push-notifications"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="3-tydny" className="block text-sm/6 font-normal text-gray-900">
-											3 týdny
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="4-tydny"
-											name="push-notifications"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="4-tydny" className="block text-sm/6 font-normal text-gray-900">
-											4 týdny
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="jine"
-											name="push-notifications"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="jine" className="block text-sm/6 font-normal text-gray-900">
-											Jiné
-										</label>
-									</div>
-								</div>
-							</fieldset>
-						</div>
-
-						<div className="sm:col-span-3"></div>
-
-						<div className="sm:col-span-2">
-							<label htmlFor="odbery" className="block text-sm/6 font-medium text-gray-900">
-								Odběry
-							</label>
-							<div className="mt-2 grid grid-cols-1">
-								<select
-									id="odbery"
-									name="odbery"
-									className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-								>
-									<option value="" disabled selected>Vyberte jednu z možností</option>
-									<option>V místě bydliště</option>
-									<option>Ve FNM</option>
-								</select>
-								<ChevronDownIcon
-									aria-hidden="true"
-									className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-								/>
-							</div>
-						</div>
-
-						<div className="sm:col-span-4"></div>
-
-						<div className="sm:col-span-3">
-							<fieldset>
-								<legend className="text-sm/6 font-medium text-gray-900">Růstové faktory</legend>
-								<div className="mt-6 space-y-2">
-									<div className="flex items-center gap-x-3">
-										<input
-											id="pelgraz"
-											name="rustove-faktory"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="pelgraz" className="block text-sm/6 font-normal text-gray-900">
-											Pelgraz
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="Lonquex"
-											name="rustove-faktory"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="Lonquex" className="block text-sm/6 font-normal text-gray-900">
-											Lonquex
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="zarzio-3x"
-											name="rustove-faktory"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="zarzio-3x" className="block text-sm/6 font-normal text-gray-900">
-											Zarzio 3x
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="zarzio-5x"
-											name="rustove-faktory"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="zarzio-5x" className="block text-sm/6 font-normal text-gray-900">
-											Zarzio 5x
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="ziextenzo"
-											name="rustove-faktory"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="ziextenzo" className="block text-sm/6 font-normal text-gray-900">
-											Ziextenzo
-										</label>
-									</div>
-									<div className="flex items-center gap-x-3">
-										<input
-											id="bez-rustovych-faktoru"
-											name="rustove-faktory"
-											type="radio"
-											className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-										/>
-										<label htmlFor="bez-rustovych-faktoru" className="block text-sm/6 font-normal text-gray-900">
-											Bez růstových faktorů
-										</label>
-									</div>
-								</div>
-							</fieldset>
-						</div>
-
-						<div className="sm:col-span-3"></div>
-
-						<div className="sm:col-span-3">
-							<fieldset>
-								<legend className="text-sm/6 font-semibold text-gray-900">Antiemetika</legend>
-								<div className="mt-6 space-y-2">
-									<div className="flex gap-3">
-										<div className="flex h-6 shrink-0 items-center">
-											<div className="group grid size-4 grid-cols-1">
-												<input
-													id="degan"
-													name="degan"
-													type="checkbox"
-													aria-describedby="degan-description"
-													className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-												/>
-												<svg
-													fill="none"
-													viewBox="0 0 14 14"
-													className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
-												>
-													<path
-														d="M3 8L6 11L11 3.5"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-checked:opacity-100"
-													/>
-													<path
-														d="M3 7H11"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-indeterminate:opacity-100"
-													/>
-												</svg>
-											</div>
-										</div>
-										<div className="text-sm/6">
-											<label htmlFor="degan" className="font-normal text-gray-900">
-												Degan
-											</label>
-										</div>
-									</div>
-									<div className="flex gap-3">
-										<div className="flex h-6 shrink-0 items-center">
-											<div className="group grid size-4 grid-cols-1">
-												<input
-													id="torecan"
-													name="torecan"
-													type="checkbox"
-													aria-describedby="torecan-description"
-													className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-												/>
-												<svg
-													fill="none"
-													viewBox="0 0 14 14"
-													className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
-												>
-													<path
-														d="M3 8L6 11L11 3.5"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-checked:opacity-100"
-													/>
-													<path
-														d="M3 7H11"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-indeterminate:opacity-100"
-													/>
-												</svg>
-											</div>
-										</div>
-										<div className="text-sm/6">
-											<label htmlFor="torecan" className="font-normal text-gray-900">
-												Torecan
-											</label>
-										</div>
-									</div>
-									<div className="flex gap-3">
-										<div className="flex h-6 shrink-0 items-center">
-											<div className="group grid size-4 grid-cols-1">
-												<input
-													id="novetron"
-													name="novetron"
-													type="checkbox"
-													aria-describedby="novetron-description"
-													className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-												/>
-												<svg
-													fill="none"
-													viewBox="0 0 14 14"
-													className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
-												>
-													<path
-														d="M3 8L6 11L11 3.5"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-checked:opacity-100"
-													/>
-													<path
-														d="M3 7H11"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-indeterminate:opacity-100"
-													/>
-												</svg>
-											</div>
-										</div>
-										<div className="text-sm/6">
-											<label htmlFor="novetron" className="font-normal text-gray-900">
-												Novetron
-											</label>
-										</div>
-									</div>
-									<div className="flex gap-3">
-										<div className="flex h-6 shrink-0 items-center">
-											<div className="group grid size-4 grid-cols-1">
-												<input
-													id="granisetron"
-													name="granisetron"
-													type="checkbox"
-													aria-describedby="granisetron-description"
-													className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-												/>
-												<svg
-													fill="none"
-													viewBox="0 0 14 14"
-													className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
-												>
-													<path
-														d="M3 8L6 11L11 3.5"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-checked:opacity-100"
-													/>
-													<path
-														d="M3 7H11"
-														strokeWidth={2}
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														className="opacity-0 group-has-indeterminate:opacity-100"
-													/>
-												</svg>
-											</div>
-										</div>
-										<div className="text-sm/6">
-											<label htmlFor="granisetron" className="font-normal text-gray-900">
-												Granisetron
-											</label>
-										</div>
-									</div>
-								</div>
-							</fieldset>
-						</div>
-
-						<div className="sm:col-span-3"></div>
-
-						<div className="sm:col-span-2">
-              <label htmlFor="kontrola-u-praktickeho-lekare" className="block text-sm/6 font-medium text-gray-900">
-                Kontrola u praktického lékaře
-              </label>
-              <div className="mt-2 grid grid-cols-1">
-                <select
-                  id="kontrola-u-praktickeho-lekare"
-                  name="kontrola-u-praktickeho-lekare"
-                  className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            <div className="sm:col-span-2">
+              <Field>
+                <Label className="text-sm/6 font-medium text-gray-900">Inverval chemoterapie</Label>
+                <RadioGroup
+                  value={interval}
+                  onChange={setInterval}
+                  className="mt-6 space-y-2"
                 >
-									<option value="" disabled selected>Vyberte jednu z možností</option>
-                  <option>Ano</option>
-                  <option>Ne</option>
-                </select>
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-                />
-              </div>
+                  {[
+                    { id: '1-tyden', label: '1 týden' },
+                    { id: '2-tydny', label: '2 týdny' },
+                    { id: '3-tydny', label: '3 týdny' },
+                    { id: '4-tydny', label: '4 týdny' },
+                    { id: 'jine', label: 'Jiné' },
+                  ].map((opt) => (
+                    <Radio
+                      key={opt.id}
+                      value={opt.label}
+                      className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      <span
+                        aria-hidden
+                        className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                      />
+                      <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                    </Radio>
+                  ))}
+                </RadioGroup>
+              </Field>
             </div>
 
-						<div className="sm:col-span-4"></div>
+            <div className="sm:col-span-4"></div>
 
-						<div className="sm:col-span-2">
-							<label htmlFor="zpusob-dopravy" className="block text-sm/6 font-medium text-gray-900">
-								Způsob dopravy
-							</label>
-							<div className="mt-2 grid grid-cols-1">
-								<select
-									id="zpusob-dopravy"
-									name="zpusob-dopravy"
-									className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-								>
-									<option value="" disabled selected>Vyberte jednu z možností</option>
-									<option>Vlastní</option>
-									<option>Sanita</option>
-								</select>
-								<ChevronDownIcon
-									aria-hidden="true"
-									className="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-								/>
-							</div>
-						</div>
+            <div className="sm:col-span-2">
+              <Field>
+                <Label htmlFor="odbery" className="block text-sm/6 font-medium text-gray-900">
+                  Odběry
+                </Label>
+                <Select
+                  id="odbery"
+                  name="odbery"
+                  value={bloodDraw}
+                  onChange={(e) => setBloodDraw(e.target.value)}
+                  className="mt-2 w-full rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                >
+                  <option value="" disabled>
+                    Vyberte jednu z možností
+                  </option>
+                  <option value="V místě bydliště">V místě bydliště</option>
+                  <option value="Ve FNM">Ve FNM</option>
+                </Select>
+              </Field>
+            </div>
 
-						<div className="sm:col-span-4"></div>
+            <div className="sm:col-span-4"></div>
+
+            <div className="sm:col-span-2">
+              <Field>
+                <Label className="text-sm/6 font-medium text-gray-900">Růstové faktory</Label>
+                <RadioGroup
+                  value={growthFactor}
+                  onChange={setGrowthFactor}
+                  className="mt-6 space-y-2"
+                >
+                  {[
+                    'Pelgraz',
+                    'Lonquex',
+                    'Zarzio 3x',
+                    'Zarzio 5x',
+                    'Ziextenzo',
+                    'Bez růstových faktorů',
+                  ].map((label) => (
+                    <Radio
+                      key={label}
+                      value={label}
+                      className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      <span
+                        aria-hidden
+                        className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                      />
+                      <span className="block text-sm/6 font-normal text-gray-900">{label}</span>
+                    </Radio>
+                  ))}
+                </RadioGroup>
+              </Field>
+            </div>
+
+            <div className="sm:col-span-4"></div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="terapie" className="block text-sm/6 font-medium text-gray-900">
-                Terapie
-              </label>
-              <div className="mt-2">
-                <textarea
+              <Field>
+                <Label className="text-sm/6 font-semibold text-gray-900">Antiemetika</Label>
+                <div className="mt-6 space-y-2">
+                  {[
+                    { id: 'degan', label: 'Degan' },
+                    { id: 'torecan', label: 'Torecan' },
+                    { id: 'novetron', label: 'Novetron' },
+                    { id: 'granisetron', label: 'Granisetron' },
+                  ].map((opt) => (
+                    <div key={opt.id} className="flex gap-3">
+                      <div className="flex h-6 shrink-0 items-center">
+                        <Checkbox
+                          id={opt.id}
+                          name={opt.id}
+                          checked={antiemetika[opt.id] || false}
+                          onChange={() => toggleAntiemetikum(opt.id as keyof typeof antiemetika)}
+                          className="group size-4 rounded-sm border border-gray-300 bg-white data-[checked]:border-indigo-600 data-[checked]:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          <svg
+                            fill="none"
+                            viewBox="0 0 14 14"
+                            className="pointer-events-none size-3.5 stroke-white group-data-[checked]:block hidden"
+                          >
+                            <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </Checkbox>
+                      </div>
+                      <div className="text-sm/6">
+                        <Label htmlFor={opt.id} className="font-normal text-gray-900">
+                          {opt.label}
+                        </Label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Field>
+            </div>
+
+            <div className="sm:col-span-3"></div>
+
+            <div className="sm:col-span-2">
+              <Field>
+                <Label htmlFor="kontrola-u-praktickeho-lekare" className="block text-sm/6 font-medium text-gray-900">
+                  Kontrola u praktického lékaře
+                </Label>
+                <Select
+                  id="kontrola-u-praktickeho-lekare"
+                  name="kontrola-u-praktickeho-lekare"
+                  value={gpCheck}
+                  onChange={(e) => setGpCheck(e.target.value)}
+                  className="mt-2 w-full rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                >
+                  <option value="" disabled>
+                    Vyberte jednu z možností
+                  </option>
+                  <option value="Ano">Ano</option>
+                  <option value="Ne">Ne</option>
+                </Select>
+              </Field>
+            </div>
+
+            <div className="sm:col-span-4"></div>
+
+            <div className="sm:col-span-2">
+              <Field>
+                <Label htmlFor="zpusob-dopravy" className="block text-sm/6 font-medium text-gray-900">
+                  Způsob dopravy
+                </Label>
+                <Select
+                  id="zpusob-dopravy"
+                  name="zpusob-dopravy"
+                  value={transport}
+                  onChange={(e) => setTransport(e.target.value)}
+                  className="mt-2 w-full rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                >
+                  <option value="" disabled>
+                    Vyberte jednu z možností
+                  </option>
+                  <option value="Vlastní">Vlastní</option>
+                  <option value="Sanita">Sanita</option>
+                </Select>
+              </Field>
+            </div>
+
+            <div className="sm:col-span-4"></div>
+
+            <div className="sm:col-span-3">
+              <Field>
+                <Label htmlFor="terapie" className="block text-sm/6 font-medium text-gray-900">
+                  Terapie
+                </Label>
+                <Textarea
                   id="terapie"
                   name="terapie"
-									rows={4}
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                ></textarea>
-              </div>
+                  rows={4}
+                  value={therapy}
+                  onChange={(e) => setTherapy(e.target.value)}
+                  className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+              </Field>
             </div>
-					</div>
+          </div>
         </div>
-			</div>
+      </div>
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button type="button" className="text-sm/6 font-semibold text-gray-900">
@@ -473,7 +317,7 @@ function ChemoterapieForm() {
         </button>
       </div>
     </form>
-	);
+  )
 }
 
-export default ChemoterapieForm;
+export default ChemoterapieForm
