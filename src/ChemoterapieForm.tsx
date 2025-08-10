@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import {
   Field,
   Label,
@@ -8,10 +8,13 @@ import {
   RadioGroup,
   Radio,
   Checkbox,
+  Dialog,
+  DialogPanel,
+  Description,
 } from '@headlessui/react'
 
 function ChemoterapieForm() {
-  const [gender, setGender] = useState<string>('')
+  const [gender, setGender] = useState<'male' | 'female' | ''>('')
   const [chemoType, setChemoType] = useState<string>('')
   const [cycleNumber, setCycleNumber] = useState<string>('')
   const [cycleStartDate, setCycleStartDate] = useState<string>('')
@@ -27,13 +30,90 @@ function ChemoterapieForm() {
   const [gpCheck, setGpCheck] = useState<string>('')
   const [transport, setTransport] = useState<string>('')
   const [therapy, setTherapy] = useState<string>('')
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+	const [prubehHospitalizace, setPrubehHospitalizace] = useState<string>('');
+	const [stavPriPropusteni, setStavPriPropusteni] = useState<string>('');
+	const [kontrolaLekare, setKontrolaLekare] = useState<string>('');
 
   function toggleAntiemetikum(key: keyof typeof antiemetika) {
     setAntiemetika((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
+	function generateKontrolaLekare() {
+		console.log(cycleStartDate);
+		if (!cycleStartDate) {
+			return;
+		}
+
+		let nextChemoDate = new Date(cycleStartDate);
+		console.log(interval);
+		switch (interval) {
+			case '1-tyden':
+				nextChemoDate.setDate(nextChemoDate.getDate() + 7);
+				break;
+			case '2-tydny':
+				nextChemoDate.setDate(nextChemoDate.getDate() + 14);
+				break;
+			case '3-tydny':
+				nextChemoDate.setDate(nextChemoDate.getDate() + 21);
+				break;
+			case '4-tydny':
+				nextChemoDate.setDate(nextChemoDate.getDate() + 28);
+				break;
+			case 'jine':
+			default:
+				// Not supported
+				return;
+		}
+
+		setKontrolaLekare(`
+			Další cyklus chemoterapie za hospitalizace v plánu ${nextChemoDate.toLocaleDateString()} -
+			pacient si zavolá den předem po 12té hodině na tel 22443 4756/94 stran výsledku krevních odběrů a času nástupu k hospitalizaci.
+		`);
+	}
+
+	function generateText(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		setIsDialogOpen(true);
+
+		// Průběh hospitalizace
+		switch (gender) {
+			case 'male':
+			default:
+				setPrubehHospitalizace(`
+					Pacient přijat k aplikaci ${cycleNumber}. cyklu chemoterapie v režimu ${chemoType}, odběry k podání chemoterapie vyhovující.
+					Léčba vykapala bez komplikací. Pacienta dimitujeme do domácího prostředí s plánem další péče.
+				`);
+				break;
+			case 'female':
+				setPrubehHospitalizace(`
+					Pacientka přijata k aplikaci ${cycleNumber}. cyklu chemoterapie v režimu ${chemoType}, odběry k podání chemoterapie vyhovující.
+					Léčba vykapala bez komplikací. Pacientku dimitujeme do domácího prostředí s plánem další péče.
+				`);
+				break;
+		}
+
+		// Stav při propuštění
+		switch (gender) {
+			case 'male':
+			default:
+				setStavPriPropusteni(`
+					Orientovaný, spolupracující, afebrilní, KP kompenzovaný, břicho klidné, aperitonální, DKK bez známek HŽT.
+				`);
+				break;
+			case 'female':
+				setStavPriPropusteni(`
+					Orientovaná, spolupracující, afebrilní, KP kompenzovaná, břicho klidné, aperitonální, DKK bez známek HŽT.
+				`);
+				break;
+		}
+
+		// Kontrola lékaře
+		generateKontrolaLekare();
+	}
+
   return (
-    <form>
+    <form onSubmit={generateText}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -52,8 +132,8 @@ function ChemoterapieForm() {
                   <option value="" disabled>
                     Vyberte jednu z možností
                   </option>
-                  <option value="Muž">Muž</option>
-                  <option value="Žena">Žena</option>
+                  <option value="male">Muž</option>
+                  <option value="female">Žena</option>
                 </Select>
               </Field>
             </div>
@@ -126,7 +206,7 @@ function ChemoterapieForm() {
                   ].map((opt) => (
                     <Radio
                       key={opt.id}
-                      value={opt.label}
+                      value={opt.id}
                       className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       <span
@@ -316,6 +396,37 @@ function ChemoterapieForm() {
           Vygenerovat
         </button>
       </div>
+
+      <Dialog open={isDialogOpen} onClose={setIsDialogOpen} className="relative z-10">
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <DialogPanel className="w-full max-w-3xl rounded-md bg-white p-6 shadow-lg">
+            <div className="mt-6 text-sm text-gray-600 flex flex-col gap-y-8">
+							<div className="flex flex-col gap-y-2">
+								<h1 className="text-lg uppercase">Průběh hospitalizace</h1>
+								<p className="text-md">{ prubehHospitalizace }</p>
+							</div>
+							<div className="flex flex-col gap-y-2">
+								<h1 className="text-lg uppercase">Stav pacienta při propuštění:</h1>
+								<p className="text-md">{ stavPriPropusteni }</p>
+							</div>
+							<div className="flex flex-col gap-y-2">
+								<h1 className="text-lg uppercase">Kontrola lékaře:</h1>
+								<p className="text-md">{ kontrolaLekare }</p>
+							</div>
+            </div>
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                type="button"
+                className="rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-300"
+                onClick={() => setIsDialogOpen(false)}
+              >
+                Zavřít
+              </button>
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
     </form>
   )
 }
