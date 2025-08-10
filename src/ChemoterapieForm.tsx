@@ -10,11 +10,10 @@ import {
   Checkbox,
   Dialog,
   DialogPanel,
-  Description,
 } from '@headlessui/react';
 
 function ChemoterapieForm() {
-  const [gender, setGender] = useState<'male' | 'female' | ''>('');
+  const [gender, setGender] = useState<string>('');
   const [chemoType, setChemoType] = useState<string>('');
   const [cycleNumber, setCycleNumber] = useState<string>('');
   const [cycleStartDate, setCycleStartDate] = useState<string>('');
