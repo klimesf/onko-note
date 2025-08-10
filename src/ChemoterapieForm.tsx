@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react';
 import {
   Field,
   Label,
@@ -11,106 +11,106 @@ import {
   Dialog,
   DialogPanel,
   Description,
-} from '@headlessui/react'
+} from '@headlessui/react';
 
 function ChemoterapieForm() {
-  const [gender, setGender] = useState<'male' | 'female' | ''>('')
-  const [chemoType, setChemoType] = useState<string>('')
-  const [cycleNumber, setCycleNumber] = useState<string>('')
-  const [cycleStartDate, setCycleStartDate] = useState<string>('')
-  const [interval, setInterval] = useState<string>('')
-  const [bloodDraw, setBloodDraw] = useState<string>('')
-  const [growthFactor, setGrowthFactor] = useState<string>('')
+  const [gender, setGender] = useState<'male' | 'female' | ''>('');
+  const [chemoType, setChemoType] = useState<string>('');
+  const [cycleNumber, setCycleNumber] = useState<string>('');
+  const [cycleStartDate, setCycleStartDate] = useState<string>('');
+  const [interval, setInterval] = useState<string>('');
+  const [bloodDraw, setBloodDraw] = useState<string>('');
+  const [growthFactor, setGrowthFactor] = useState<string>('');
   const [antiemetika, setAntiemetika] = useState<{ [key: string]: boolean }>({
     degan: false,
     torecan: false,
     novetron: false,
     granisetron: false,
-  })
-  const [gpCheck, setGpCheck] = useState<string>('')
-  const [transport, setTransport] = useState<string>('')
-  const [therapy, setTherapy] = useState<string>('')
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-	const [prubehHospitalizace, setPrubehHospitalizace] = useState<string>('');
-	const [stavPriPropusteni, setStavPriPropusteni] = useState<string>('');
-	const [kontrolaLekare, setKontrolaLekare] = useState<string>('');
+  });
+  const [gpCheck, setGpCheck] = useState<string>('');
+  const [transport, setTransport] = useState<string>('');
+  const [therapy, setTherapy] = useState<string>('');
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [prubehHospitalizace, setPrubehHospitalizace] = useState<string>('');
+  const [stavPriPropusteni, setStavPriPropusteni] = useState<string>('');
+  const [kontrolaLekare, setKontrolaLekare] = useState<string>('');
 
   function toggleAntiemetikum(key: keyof typeof antiemetika) {
-    setAntiemetika((prev) => ({ ...prev, [key]: !prev[key] }))
+    setAntiemetika((prev) => ({ ...prev, [key]: !prev[key] }));
   }
 
-	function generateKontrolaLekare() {
-		console.log(cycleStartDate);
-		if (!cycleStartDate) {
-			return;
-		}
+  function generateKontrolaLekare() {
+    console.log(cycleStartDate);
+    if (!cycleStartDate) {
+      return;
+    }
 
-		let nextChemoDate = new Date(cycleStartDate);
-		console.log(interval);
-		switch (interval) {
-			case '1-tyden':
-				nextChemoDate.setDate(nextChemoDate.getDate() + 7);
-				break;
-			case '2-tydny':
-				nextChemoDate.setDate(nextChemoDate.getDate() + 14);
-				break;
-			case '3-tydny':
-				nextChemoDate.setDate(nextChemoDate.getDate() + 21);
-				break;
-			case '4-tydny':
-				nextChemoDate.setDate(nextChemoDate.getDate() + 28);
-				break;
-			case 'jine':
-			default:
-				// Not supported
-				return;
-		}
+    let nextChemoDate = new Date(cycleStartDate);
+    console.log(interval);
+    switch (interval) {
+      case '1-tyden':
+        nextChemoDate.setDate(nextChemoDate.getDate() + 7);
+        break;
+      case '2-tydny':
+        nextChemoDate.setDate(nextChemoDate.getDate() + 14);
+        break;
+      case '3-tydny':
+        nextChemoDate.setDate(nextChemoDate.getDate() + 21);
+        break;
+      case '4-tydny':
+        nextChemoDate.setDate(nextChemoDate.getDate() + 28);
+        break;
+      case 'jine':
+      default:
+        // Not supported
+        return;
+    }
 
-		setKontrolaLekare(`
+    setKontrolaLekare(`
 			Další cyklus chemoterapie za hospitalizace v plánu ${nextChemoDate.toLocaleDateString()} -
 			pacient si zavolá den předem po 12té hodině na tel 22443 4756/94 stran výsledku krevních odběrů a času nástupu k hospitalizaci.
 		`);
-	}
+  }
 
-	function generateText(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
-		setIsDialogOpen(true);
+  function generateText(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsDialogOpen(true);
 
-		// Průběh hospitalizace
-		switch (gender) {
-			case 'male':
-			default:
-				setPrubehHospitalizace(`
+    // Průběh hospitalizace
+    switch (gender) {
+      case 'male':
+      default:
+        setPrubehHospitalizace(`
 					Pacient přijat k aplikaci ${cycleNumber}. cyklu chemoterapie v režimu ${chemoType}, odběry k podání chemoterapie vyhovující.
 					Léčba vykapala bez komplikací. Pacienta dimitujeme do domácího prostředí s plánem další péče.
 				`);
-				break;
-			case 'female':
-				setPrubehHospitalizace(`
+        break;
+      case 'female':
+        setPrubehHospitalizace(`
 					Pacientka přijata k aplikaci ${cycleNumber}. cyklu chemoterapie v režimu ${chemoType}, odběry k podání chemoterapie vyhovující.
 					Léčba vykapala bez komplikací. Pacientku dimitujeme do domácího prostředí s plánem další péče.
 				`);
-				break;
-		}
+        break;
+    }
 
-		// Stav při propuštění
-		switch (gender) {
-			case 'male':
-			default:
-				setStavPriPropusteni(`
+    // Stav při propuštění
+    switch (gender) {
+      case 'male':
+      default:
+        setStavPriPropusteni(`
 					Orientovaný, spolupracující, afebrilní, KP kompenzovaný, břicho klidné, aperitonální, DKK bez známek HŽT.
 				`);
-				break;
-			case 'female':
-				setStavPriPropusteni(`
+        break;
+      case 'female':
+        setStavPriPropusteni(`
 					Orientovaná, spolupracující, afebrilní, KP kompenzovaná, břicho klidné, aperitonální, DKK bez známek HŽT.
 				`);
-				break;
-		}
+        break;
+    }
 
-		// Kontrola lékaře
-		generateKontrolaLekare();
-	}
+    // Kontrola lékaře
+    generateKontrolaLekare();
+  }
 
   return (
     <form onSubmit={generateText}>
@@ -119,7 +119,10 @@ function ChemoterapieForm() {
           <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-2">
               <Field>
-                <Label htmlFor="pohlavi" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="pohlavi"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Pohlaví
                 </Label>
                 <Select
@@ -142,7 +145,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-3">
               <Field>
-                <Label htmlFor="typ-chemoterapie" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="typ-chemoterapie"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Typ chemoterapie
                 </Label>
                 <Input
@@ -159,7 +165,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-1">
               <Field>
-                <Label htmlFor="cislo-cyklu" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="cislo-cyklu"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Číslo cyklu
                 </Label>
                 <Input
@@ -175,7 +184,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-2">
               <Field>
-                <Label htmlFor="datum-zahajeni-cyklu" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="datum-zahajeni-cyklu"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Datum zahájení cyklu
                 </Label>
                 <Input
@@ -191,7 +203,9 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-2">
               <Field>
-                <Label className="text-sm/6 font-medium text-gray-900">Inverval chemoterapie</Label>
+                <Label className="text-sm/6 font-medium text-gray-900">
+                  Inverval chemoterapie
+                </Label>
                 <RadioGroup
                   value={interval}
                   onChange={setInterval}
@@ -213,7 +227,9 @@ function ChemoterapieForm() {
                         aria-hidden
                         className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                       />
-                      <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                      <span className="block text-sm/6 font-normal text-gray-900">
+                        {opt.label}
+                      </span>
                     </Radio>
                   ))}
                 </RadioGroup>
@@ -224,7 +240,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-2">
               <Field>
-                <Label htmlFor="odbery" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="odbery"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Odběry
                 </Label>
                 <Select
@@ -247,7 +266,9 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-2">
               <Field>
-                <Label className="text-sm/6 font-medium text-gray-900">Růstové faktory</Label>
+                <Label className="text-sm/6 font-medium text-gray-900">
+                  Růstové faktory
+                </Label>
                 <RadioGroup
                   value={growthFactor}
                   onChange={setGrowthFactor}
@@ -270,7 +291,9 @@ function ChemoterapieForm() {
                         aria-hidden
                         className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                       />
-                      <span className="block text-sm/6 font-normal text-gray-900">{label}</span>
+                      <span className="block text-sm/6 font-normal text-gray-900">
+                        {label}
+                      </span>
                     </Radio>
                   ))}
                 </RadioGroup>
@@ -281,7 +304,9 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-3">
               <Field>
-                <Label className="text-sm/6 font-semibold text-gray-900">Antiemetika</Label>
+                <Label className="text-sm/6 font-semibold text-gray-900">
+                  Antiemetika
+                </Label>
                 <div className="mt-6 space-y-2">
                   {[
                     { id: 'degan', label: 'Degan' },
@@ -295,7 +320,11 @@ function ChemoterapieForm() {
                           id={opt.id}
                           name={opt.id}
                           checked={antiemetika[opt.id] || false}
-                          onChange={() => toggleAntiemetikum(opt.id as keyof typeof antiemetika)}
+                          onChange={() =>
+                            toggleAntiemetikum(
+                              opt.id as keyof typeof antiemetika
+                            )
+                          }
                           className="group size-4 rounded-sm border border-gray-300 bg-white data-[checked]:border-indigo-600 data-[checked]:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                           <svg
@@ -303,12 +332,20 @@ function ChemoterapieForm() {
                             viewBox="0 0 14 14"
                             className="pointer-events-none size-3.5 stroke-white group-data-[checked]:block hidden"
                           >
-                            <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                            <path
+                              d="M3 8L6 11L11 3.5"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
                           </svg>
                         </Checkbox>
                       </div>
                       <div className="text-sm/6">
-                        <Label htmlFor={opt.id} className="font-normal text-gray-900">
+                        <Label
+                          htmlFor={opt.id}
+                          className="font-normal text-gray-900"
+                        >
                           {opt.label}
                         </Label>
                       </div>
@@ -322,7 +359,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-2">
               <Field>
-                <Label htmlFor="kontrola-u-praktickeho-lekare" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="kontrola-u-praktickeho-lekare"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Kontrola u praktického lékaře
                 </Label>
                 <Select
@@ -345,7 +385,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-2">
               <Field>
-                <Label htmlFor="zpusob-dopravy" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="zpusob-dopravy"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Způsob dopravy
                 </Label>
                 <Select
@@ -368,7 +411,10 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-3">
               <Field>
-                <Label htmlFor="terapie" className="block text-sm/6 font-medium text-gray-900">
+                <Label
+                  htmlFor="terapie"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
                   Terapie
                 </Label>
                 <Textarea
@@ -397,23 +443,29 @@ function ChemoterapieForm() {
         </button>
       </div>
 
-      <Dialog open={isDialogOpen} onClose={setIsDialogOpen} className="relative z-10">
+      <Dialog
+        open={isDialogOpen}
+        onClose={setIsDialogOpen}
+        className="relative z-10"
+      >
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <DialogPanel className="w-full max-w-3xl rounded-md bg-white p-6 shadow-lg">
             <div className="mt-6 text-sm text-gray-600 flex flex-col gap-y-8">
-							<div className="flex flex-col gap-y-2">
-								<h1 className="text-lg uppercase">Průběh hospitalizace</h1>
-								<p className="text-md">{ prubehHospitalizace }</p>
-							</div>
-							<div className="flex flex-col gap-y-2">
-								<h1 className="text-lg uppercase">Stav pacienta při propuštění:</h1>
-								<p className="text-md">{ stavPriPropusteni }</p>
-							</div>
-							<div className="flex flex-col gap-y-2">
-								<h1 className="text-lg uppercase">Kontrola lékaře:</h1>
-								<p className="text-md">{ kontrolaLekare }</p>
-							</div>
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-lg uppercase">Průběh hospitalizace</h1>
+                <p className="text-md">{prubehHospitalizace}</p>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-lg uppercase">
+                  Stav pacienta při propuštění:
+                </h1>
+                <p className="text-md">{stavPriPropusteni}</p>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-lg uppercase">Kontrola lékaře:</h1>
+                <p className="text-md">{kontrolaLekare}</p>
+              </div>
             </div>
             <div className="mt-6 flex justify-end gap-3">
               <button
@@ -428,7 +480,7 @@ function ChemoterapieForm() {
         </div>
       </Dialog>
     </form>
-  )
+  );
 }
 
-export default ChemoterapieForm
+export default ChemoterapieForm;
