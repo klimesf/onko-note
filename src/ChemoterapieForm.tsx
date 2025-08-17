@@ -32,18 +32,19 @@ function ChemoterapieForm() {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [prubehHospitalizace, setPrubehHospitalizace] = useState<string>('');
   const [stavPriPropusteni, setStavPriPropusteni] = useState<string>('');
-	const [dalsiCyklusChemoterapie, setDalsiCyklusChemoterapie] = useState<string>('');
-	const [zpusobDopravy, setZpusobDopravy] = useState<string>('');
-	const [rustoveFaktory, setRustoveFaktory] = useState<string>('');
-	const [odbery1, setOdbery1] = useState<string>('');
-	const [odbery2, setOdbery2] = useState<string>('');
+  const [dalsiCyklusChemoterapie, setDalsiCyklusChemoterapie] =
+    useState<string>('');
+  const [zpusobDopravy, setZpusobDopravy] = useState<string>('');
+  const [rustoveFaktory, setRustoveFaktory] = useState<string>('');
+  const [odbery1, setOdbery1] = useState<string>('');
+  const [odbery2, setOdbery2] = useState<string>('');
 
   function toggleAntiemetikum(key: keyof typeof antiemetika) {
     setAntiemetika((prev) => ({ ...prev, [key]: !prev[key] }));
   }
 
-	function getNextChemoDate(): Date {
-		let nextChemoDate = new Date(cycleStartDate);
+  function getNextChemoDate(): Date {
+    let nextChemoDate = new Date(cycleStartDate);
     switch (interval) {
       case '1-tyden':
         nextChemoDate.setDate(nextChemoDate.getDate() + 7);
@@ -62,61 +63,61 @@ function ChemoterapieForm() {
         // Not supported
         break;
     }
-		return nextChemoDate;
-	}
+    return nextChemoDate;
+  }
 
-	function generateOdbery1a2() {
-		// datum zahájení cyklu + 10 dní
-		// ale nesmí být víkend - pokud vyjde 10 dní na sobotu, tak v pátek, pokud na neděli, tak v pondělí
-		let nextOdber1 = new Date(cycleStartDate);
-		nextOdber1.setDate(nextOdber1.getDate() + 10); 
-		if (nextOdber1.getDay() === 6) {
-			nextOdber1.setDate(nextOdber1.getDate() - 1); // sobota
-		} else if (nextOdber1.getDay() === 0) {
-			nextOdber1.setDate(nextOdber1.getDate() + 1); // neděle
-		}
-		
-		// 2 dny před datumem následujícího cyklu, pokud další cyklus v pondělí, tak odběry ve čtvrtek, pokud v úterý, tak v pátek
-		let nextChemoDate = getNextChemoDate();
-		let nextOdber2 = new Date(nextChemoDate);
-		nextOdber2.setDate(nextOdber2.getDate() - 2);
-		if (nextOdber2.getDay() === 6) {
-			nextOdber2.setDate(nextOdber2.getDate() - 2); // pondělí - 2 = sobota => odběry čtvrtek
-		} else if (nextOdber2.getDay() === 0) {
-			nextOdber2.setDate(nextOdber2.getDate() - 2); // úterý - 2 = neděle => odběry pátek
-		}
+  function generateOdbery1a2() {
+    // datum zahájení cyklu + 10 dní
+    // ale nesmí být víkend - pokud vyjde 10 dní na sobotu, tak v pátek, pokud na neděli, tak v pondělí
+    let nextOdber1 = new Date(cycleStartDate);
+    nextOdber1.setDate(nextOdber1.getDate() + 10);
+    if (nextOdber1.getDay() === 6) {
+      nextOdber1.setDate(nextOdber1.getDate() - 1); // sobota
+    } else if (nextOdber1.getDay() === 0) {
+      nextOdber1.setDate(nextOdber1.getDate() + 1); // neděle
+    }
 
-		switch (bloodDraw) {
-			case 'v-miste-bydliste':
-				if (interval === '3-tydny' || interval === '4-tydny') {
-					setOdbery1(`
+    // 2 dny před datumem následujícího cyklu, pokud další cyklus v pondělí, tak odběry ve čtvrtek, pokud v úterý, tak v pátek
+    let nextChemoDate = getNextChemoDate();
+    let nextOdber2 = new Date(nextChemoDate);
+    nextOdber2.setDate(nextOdber2.getDate() - 2);
+    if (nextOdber2.getDay() === 6) {
+      nextOdber2.setDate(nextOdber2.getDate() - 2); // pondělí - 2 = sobota => odběry čtvrtek
+    } else if (nextOdber2.getDay() === 0) {
+      nextOdber2.setDate(nextOdber2.getDate() - 2); // úterý - 2 = neděle => odběry pátek
+    }
+
+    switch (bloodDraw) {
+      case 'v-miste-bydliste':
+        if (interval === '3-tydny' || interval === '4-tydny') {
+          setOdbery1(`
 						<strong>${nextOdber1.toLocaleDateString()}</strong> Kontrolní odběry v místě bydliště (preferenčně EUC, Synlab, Unilabs, Nem. Benešov, Příbram nebo Rakovník).
 						Výsledek prosím sdělit mailem luzka.onkologie@fnmotol.cz nebo telefonicky na čísle 22 443 4771.
 					`);
-				}
-				setOdbery2(`
+        }
+        setOdbery2(`
 					<strong>${nextOdber2.toLocaleDateString()}</strong> Kontrolní odběry v místě bydliště (preferenčně EUC, Synlab, Unilabs, Nem. Benešov, Příbram nebo Rakovník).
 					Výsledek prosím sdělit mailem luzka.onkologie@fnmotol.cz nebo telefonicky na čísle 22 443 4771.
 				`);
-				break;
-			case 've-fnm':
-			default:
-				if (interval === '3-tydny' || interval === '4-tydny') {
-					setOdbery1(`
+        break;
+      case 've-fnm':
+      default:
+        if (interval === '3-tydny' || interval === '4-tydny') {
+          setOdbery1(`
 						<strong>${nextOdber1.toLocaleDateString()}</strong> Kontrolní odběry v místě na onkologické ambulanci FNM - 3.patro uzel D kolem 8hod ráno.
 						O výsledky si zavolá telefonicky po 12té hodině na tel. 22 443 4756/4794.
 					`);
-				}
-				setOdbery2(`
+        }
+        setOdbery2(`
 					<strong>${nextOdber2.toLocaleDateString()}</strong> Kontrolní odběry v místě na onkologické ambulanci FNM - 3.patro uzel D kolem 8hod ráno.
 					O výsledky si zavolá telefonicky po 12té hodině na tel. 22 443 4756/4794.
 				`);
-				break;
-		}
-	}
+        break;
+    }
+  }
 
-	function generateCyklusChemoterapie() {
-		if (!cycleStartDate) {
+  function generateCyklusChemoterapie() {
+    if (!cycleStartDate) {
       return;
     }
 
@@ -126,19 +127,19 @@ function ChemoterapieForm() {
 			Další cyklus chemoterapie za hospitalizace na 2. lůžkové stanici v plánu <strong>${nextChemoDate.toLocaleDateString()}</strong>.
 			Pacient bude stran přesného času příchodu telefonicky informován pracovní den předem po 12té hodině. 
 		`);
-	}
+  }
 
   function generateText(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsDialogOpen(true);
 
-		setPrubehHospitalizace('');
-		setStavPriPropusteni('');
-		setDalsiCyklusChemoterapie('');
-		setZpusobDopravy('');
-		setRustoveFaktory('');
-		setOdbery1('');
-		setOdbery2('');
+    setPrubehHospitalizace('');
+    setStavPriPropusteni('');
+    setDalsiCyklusChemoterapie('');
+    setZpusobDopravy('');
+    setRustoveFaktory('');
+    setOdbery1('');
+    setOdbery2('');
 
     // Průběh hospitalizace
     switch (gender) {
@@ -172,47 +173,57 @@ function ChemoterapieForm() {
         break;
     }
 
-		// Medikace
-		// -- Růstové faktory
-		switch (growthFactor) {
-			case 'Pelgraz':
-				setRustoveFaktory('Pelgraz 6mg inj. s.c. - Pacient si 24h po dokapání chemoterapie aplikuje jednorázovou podkožní injekci Pelgraz.');
-				break;
-			case 'Lonquex':
-				setRustoveFaktory('Lonquex 6mg inj. s.c. - Pacient si 24h po dokapání chemoterapie aplikuje jednorázovou podkožní injekci Lonquex.');
-				break;
-			case 'Zarzio 3x':
-				setRustoveFaktory('Pacient si aplikuje 3x Zarzio subkutánní injekce 24hod od dokapání chemoterapie D1-D5.');
-				break;
-			case 'Zarzio 5x':
-				setRustoveFaktory('Pacient si aplikuje 5x Zarzio subkutánní injekce 24hod od dokapání chemoterapie D1-D5.');
-				break;
-			case 'Ziextenzo':
-				setRustoveFaktory('Ziextenzo 6mg inj. s.c. - Pacient si 24h po dokapání chemoterapie aplikuje jednorázovou podkožní injekci Ziextenzo.');
-				break;
-			case 'Bez růstových faktorů':
-			default:
-				setRustoveFaktory('');
-				break;
-		}
-		// -- Antiemetika
+    // Medikace
+    // -- Růstové faktory
+    switch (growthFactor) {
+      case 'Pelgraz':
+        setRustoveFaktory(
+          'Pelgraz 6mg inj. s.c. - Pacient si 24h po dokapání chemoterapie aplikuje jednorázovou podkožní injekci Pelgraz.'
+        );
+        break;
+      case 'Lonquex':
+        setRustoveFaktory(
+          'Lonquex 6mg inj. s.c. - Pacient si 24h po dokapání chemoterapie aplikuje jednorázovou podkožní injekci Lonquex.'
+        );
+        break;
+      case 'Zarzio 3x':
+        setRustoveFaktory(
+          'Pacient si aplikuje 3x Zarzio subkutánní injekce 24hod od dokapání chemoterapie D1-D5.'
+        );
+        break;
+      case 'Zarzio 5x':
+        setRustoveFaktory(
+          'Pacient si aplikuje 5x Zarzio subkutánní injekce 24hod od dokapání chemoterapie D1-D5.'
+        );
+        break;
+      case 'Ziextenzo':
+        setRustoveFaktory(
+          'Ziextenzo 6mg inj. s.c. - Pacient si 24h po dokapání chemoterapie aplikuje jednorázovou podkožní injekci Ziextenzo.'
+        );
+        break;
+      case 'Bez růstových faktorů':
+      default:
+        setRustoveFaktory('');
+        break;
+    }
+    // -- Antiemetika
 
-		// Odběry
-		generateOdbery1a2();
+    // Odběry
+    generateOdbery1a2();
 
-		// Další cyklus chemoterapie
-		generateCyklusChemoterapie();
+    // Další cyklus chemoterapie
+    generateCyklusChemoterapie();
 
-		// Způsob dopravy
-		switch (transport) {
-			case 'vlastni':
-			default:
-				setZpusobDopravy('Způsob dopravy: vlastní');
-				break;
-			case 'sanita':
-				setZpusobDopravy('Způsob dopravy: sanitou');
-				break;
-		}
+    // Způsob dopravy
+    switch (transport) {
+      case 'vlastni':
+      default:
+        setZpusobDopravy('Způsob dopravy: vlastní');
+        break;
+      case 'sanita':
+        setZpusobDopravy('Způsob dopravy: sanitou');
+        break;
+    }
   }
 
   return (
@@ -565,85 +576,139 @@ function ChemoterapieForm() {
                 </h1>
                 <p className="text-md">{stavPriPropusteni}</p>
               </div>
-							
-							<div className="flex flex-col gap-y-2">
-								<h1 className="text-lg uppercase">DOPORUČENÍ:</h1>
-								<h1 className="text-lg">Medikace:</h1>
-								<p className="text-md">
-									<span className="italic text-red-500">... Doplnit: Chronická medikace: ...</span>
-								</p>
-								
-								{ antiemetika['degan'] || antiemetika['torecan'] || antiemetika['novetron'] || antiemetika['granisetron'] ? <>
-									<p className='text-md'>
-										<span className="underline">Při  nevolnosti:</span>
-									</p>
-									<ul className="list-disc pl-4">
-									{ antiemetika['degan'] ? <>
-										<li className='text-md'>
-											Degan 10mg tbl. max 3/den, CAVE: neužívat při průjmu
-										</li>
-									</> : <></>}
-									{ antiemetika['torecan'] ? <>
-										<li className='text-md'>
-											Torecan 6,5mg tbl max 3/den
-										</li>
-									</> : <></>}
-									{ antiemetika['novetron'] ? <>
-										<li className='text-md'>
-											Novetron tbl 1 tbl. pod jazyk, vycucat, max 2/den, CAVE: způsobuje zácpu
-										</li>
-									</> : <></>}
-									{ antiemetika['granisetron'] ? <>
-										<li className='text-md'>
-											Granisetron 1mg tbl. max 2/den
-										</li>
-									</> : <></>}
-									</ul>
-									<br/>
-								</> : <></>}
-								{ Array.from(rustoveFaktory).length > 0 ? <>
-									<p className="text-md">
-										<strong>{rustoveFaktory}</strong>
-									</p>
-									<p className="text-md">
-										Jedná se o růstové faktory,které podporují tvorbu bílých krvinek.
-										Po aplikaci se mohou objevit chřipkovité příznaky (bolest hlavy, kloubů, svalů, zvýšená tělesná teplota),
-										v takovém případě pac. užije volně prodejné protizánětlivé léky (Paralen, Ibalgin).
-										<span className="underline">Do doby aplikace přípravek uchovávejte v lednici.</span>
-									</p>
-									<p className="text-md">
-										Záznam o poučení nakládání s odpadem ze zdravotnické péče
-									</p>
-									<p className="text-md">
-										Pacient (osoba o pacienta pečující) byl poučen o nakládání s ostrým kontaminovaným odpadem,
-										s nepoužitelnými léčivy a dalším odpadem ze zdravotní péče v domácím prostředí.
-									</p>
-									<p className="text-md">
-										Pacient edukován o podávání medikace a injekčním podání léčby.
-									</p>
-								</> : <></> }
+
+              <div className="flex flex-col gap-y-2">
+                <h1 className="text-lg uppercase">DOPORUČENÍ:</h1>
+                <h1 className="text-lg">Medikace:</h1>
+                <p className="text-md">
+                  <span className="italic text-red-500">
+                    ... Doplnit: Chronická medikace: ...
+                  </span>
+                </p>
+
+                {antiemetika['degan'] ||
+                antiemetika['torecan'] ||
+                antiemetika['novetron'] ||
+                antiemetika['granisetron'] ? (
+                  <>
+                    <p className="text-md">
+                      <span className="underline">Při nevolnosti:</span>
+                    </p>
+                    <ul className="list-disc pl-4">
+                      {antiemetika['degan'] ? (
+                        <>
+                          <li className="text-md">
+                            Degan 10mg tbl. max 3/den, CAVE: neužívat při průjmu
+                          </li>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {antiemetika['torecan'] ? (
+                        <>
+                          <li className="text-md">
+                            Torecan 6,5mg tbl max 3/den
+                          </li>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {antiemetika['novetron'] ? (
+                        <>
+                          <li className="text-md">
+                            Novetron tbl 1 tbl. pod jazyk, vycucat, max 2/den,
+                            CAVE: způsobuje zácpu
+                          </li>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {antiemetika['granisetron'] ? (
+                        <>
+                          <li className="text-md">
+                            Granisetron 1mg tbl. max 2/den
+                          </li>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </ul>
+                    <br />
+                  </>
+                ) : (
+                  <></>
+                )}
+                {Array.from(rustoveFaktory).length > 0 ? (
+                  <>
+                    <p className="text-md">
+                      <strong>{rustoveFaktory}</strong>
+                    </p>
+                    <p className="text-md">
+                      Jedná se o růstové faktory,které podporují tvorbu bílých
+                      krvinek. Po aplikaci se mohou objevit chřipkovité příznaky
+                      (bolest hlavy, kloubů, svalů, zvýšená tělesná teplota), v
+                      takovém případě pac. užije volně prodejné protizánětlivé
+                      léky (Paralen, Ibalgin).
+                      <span className="underline">
+                        Do doby aplikace přípravek uchovávejte v lednici.
+                      </span>
+                    </p>
+                    <p className="text-md">
+                      Záznam o poučení nakládání s odpadem ze zdravotnické péče
+                    </p>
+                    <p className="text-md">
+                      Pacient (osoba o pacienta pečující) byl poučen o nakládání
+                      s ostrým kontaminovaným odpadem, s nepoužitelnými léčivy a
+                      dalším odpadem ze zdravotní péče v domácím prostředí.
+                    </p>
+                    <p className="text-md">
+                      Pacient edukován o podávání medikace a injekčním podání
+                      léčby.
+                    </p>
+                  </>
+                ) : (
+                  <></>
+                )}
               </div>
 
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-lg">Kontrola lékaře:</h1>
-								<ul className="list-disc pl-4">
-									{gpCheck === 'Ano' ? <>
-										<li className="text-md">Kontrola u praktického lékaře do 3 dnů od propuštění.</li>
-									</> : <></>}
-									{ Array.from(odbery1).length > 0 ?
-										<li className="text-md" dangerouslySetInnerHTML={({ __html: odbery1 })}></li>
-									: <></> }
-									<li className="text-md" dangerouslySetInnerHTML={({ __html: odbery2 })}></li>
-									<li className="text-md" dangerouslySetInnerHTML={({ __html: dalsiCyklusChemoterapie })}></li>
-								</ul>
-								<p className="text-md"></p>
+                <ul className="list-disc pl-4">
+                  {gpCheck === 'Ano' ? (
+                    <>
+                      <li className="text-md">
+                        Kontrola u praktického lékaře do 3 dnů od propuštění.
+                      </li>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {Array.from(odbery1).length > 0 ? (
+                    <li
+                      className="text-md"
+                      dangerouslySetInnerHTML={{ __html: odbery1 }}
+                    ></li>
+                  ) : (
+                    <></>
+                  )}
+                  <li
+                    className="text-md"
+                    dangerouslySetInnerHTML={{ __html: odbery2 }}
+                  ></li>
+                  <li
+                    className="text-md"
+                    dangerouslySetInnerHTML={{
+                      __html: dalsiCyklusChemoterapie,
+                    }}
+                  ></li>
+                </ul>
+                <p className="text-md"></p>
                 <p className="text-md">
-									V případě komplikací nás kontaktujte na tel.čísle:
-									224434756 nebo 224434794 (lůžková stanice), 224434730 (sesterna), 224434760 (ambulance).
-								</p>
-								<p className="text-md">
-									{zpusobDopravy}
-								</p>
+                  V případě komplikací nás kontaktujte na tel.čísle: 224434756
+                  nebo 224434794 (lůžková stanice), 224434730 (sesterna),
+                  224434760 (ambulance).
+                </p>
+                <p className="text-md">{zpusobDopravy}</p>
               </div>
             </div>
             <div className="mt-6 flex justify-end gap-3">
