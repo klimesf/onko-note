@@ -26,6 +26,7 @@ function ChemoterapieForm() {
     granisetron: false,
   });
   const [gpCheck, setGpCheck] = useState<string>('');
+  const [restaging, setRestaging] = useState<string>('');
   const [transport, setTransport] = useState<string>('');
   // const [therapy, setTherapy] = useState<string>('');
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
@@ -317,7 +318,7 @@ function ChemoterapieForm() {
             <div className="sm:col-span-2">
               <Field>
                 <Label className="text-sm/6 font-medium text-gray-900">
-                  Inverval chemoterapie
+                  Interval chemoterapie
                 </Label>
                 <RadioGroup
                   value={interval}
@@ -499,6 +500,32 @@ function ChemoterapieForm() {
             <div className="sm:col-span-2">
               <Field>
                 <Label
+                  htmlFor="restaging"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
+                  Restaging
+                </Label>
+                <Select
+                  id="restaging"
+                  name="restaging"
+                  value={restaging}
+                  onChange={(e) => setRestaging(e.target.value)}
+                  className="mt-2 w-full rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                >
+                  <option value="" disabled>
+                    Vyberte jednu z možností
+                  </option>
+                  <option value="objednan">Objednán</option>
+                  <option value="bude-objednano">Bude objednáno.</option>
+                </Select>
+              </Field>
+            </div>
+
+            <div className="sm:col-span-4"></div>
+
+            <div className="sm:col-span-2">
+              <Field>
+                <Label
                   htmlFor="zpusob-dopravy"
                   className="block text-sm/6 font-medium text-gray-900"
                 >
@@ -575,6 +602,15 @@ function ChemoterapieForm() {
                 <p className="text-md">
                   <span className="text-lg">STAV PACIENTA PŘI PROPUSTĚNÍ:</span>{' '}
                   {stavPriPropusteni}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-y-2">
+                <p className="text-md">
+                  <span className="text-lg">ZÁVĚR:</span>{' '}
+                  <span className="italic text-red-500">
+                    ... Doplnit: Diagnostický souhrn ...
+                  </span>
                 </p>
               </div>
 
@@ -702,9 +738,19 @@ function ChemoterapieForm() {
                       __html: dalsiCyklusChemoterapie,
                     }}
                   ></li>
-                  <li className="text-md">Plán péče: ...</li>
+                  {restaging === 'objednan' ? (
+                    <li className="text-md">Restaging: Objednán na ...</li>
+                  ) : (
+                    <></>
+                  )}
+                  {restaging === 'bude-objednano' ? (
+                    <li className="text-md">Restaging: Bude objednáno.</li>
+                  ) : (
+                    <></>
+                  )}
                 </ul>
                 <p className="text-md"></p>
+                <p className="text-md">Plán péče: ...</p>
                 <p className="text-md">{zpusobDopravy}</p>
                 <p className="text-md">
                   V případě komplikací nás kontaktujte na tel.čísle: 224434756
