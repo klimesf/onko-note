@@ -3,7 +3,6 @@ import {
   Field,
   Label,
   Input,
-  Textarea,
   Select,
   RadioGroup,
   Radio,
@@ -28,7 +27,7 @@ function ChemoterapieForm() {
   });
   const [gpCheck, setGpCheck] = useState<string>('');
   const [transport, setTransport] = useState<string>('');
-  const [therapy, setTherapy] = useState<string>('');
+  // const [therapy, setTherapy] = useState<string>('');
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [prubehHospitalizace, setPrubehHospitalizace] = useState<string>('');
   const [stavPriPropusteni, setStavPriPropusteni] = useState<string>('');
@@ -92,12 +91,12 @@ function ChemoterapieForm() {
         if (interval === '3-tydny' || interval === '4-tydny') {
           setOdbery1(`
 						<strong>${nextOdber1.toLocaleDateString()}</strong> Kontrolní odběry v místě bydliště (preferenčně EUC, Synlab, Unilabs, Nem. Benešov, Příbram nebo Rakovník).
-						Výsledek prosím sdělit mailem luzka.onkologie@fnmotol.cz nebo telefonicky na čísle 22 443 4771.
+						Výsledek prosím sdělit mailem luzka.onkologie@fnmotol.cz nebo telefonicky na čísle 22 443 4756/4794.
 					`);
         }
         setOdbery2(`
 					<strong>${nextOdber2.toLocaleDateString()}</strong> Kontrolní odběry v místě bydliště (preferenčně EUC, Synlab, Unilabs, Nem. Benešov, Příbram nebo Rakovník).
-					Výsledek prosím sdělit mailem luzka.onkologie@fnmotol.cz nebo telefonicky na čísle 22 443 4771.
+					Výsledek prosím sdělit mailem luzka.onkologie@fnmotol.cz nebo telefonicky na čísle 22 443 4756/4794.
 				`);
         break;
       case 've-fnm':
@@ -523,7 +522,7 @@ function ChemoterapieForm() {
 
             <div className="sm:col-span-4"></div>
 
-            <div className="sm:col-span-3">
+            {/*<div className="sm:col-span-3">
               <Field>
                 <Label
                   htmlFor="terapie"
@@ -540,7 +539,7 @@ function ChemoterapieForm() {
                   className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </Field>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>
@@ -567,14 +566,16 @@ function ChemoterapieForm() {
           <DialogPanel className="w-full max-w-3xl rounded-md bg-white p-6 shadow-lg">
             <div className="mt-6 text-sm text-gray-600 flex flex-col gap-y-8">
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-lg uppercase">Průběh hospitalizace</h1>
-                <p className="text-md">{prubehHospitalizace}</p>
+                <p className="text-md">
+                  <span className="text-lg">PRŮBĚH HOSPITALIZACE:</span>{' '}
+                  {prubehHospitalizace}
+                </p>
               </div>
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-lg uppercase">
-                  Stav pacienta při propuštění:
-                </h1>
-                <p className="text-md">{stavPriPropusteni}</p>
+                <p className="text-md">
+                  <span className="text-lg">STAV PACIENTA PŘI PROPUSTĚNÍ:</span>{' '}
+                  {stavPriPropusteni}
+                </p>
               </div>
 
               <div className="flex flex-col gap-y-2">
@@ -701,14 +702,15 @@ function ChemoterapieForm() {
                       __html: dalsiCyklusChemoterapie,
                     }}
                   ></li>
+                  <li className="text-md">Plán péče: ...</li>
                 </ul>
                 <p className="text-md"></p>
+                <p className="text-md">{zpusobDopravy}</p>
                 <p className="text-md">
                   V případě komplikací nás kontaktujte na tel.čísle: 224434756
                   nebo 224434794 (lůžková stanice), 224434730 (sesterna),
                   224434760 (ambulance).
                 </p>
-                <p className="text-md">{zpusobDopravy}</p>
               </div>
             </div>
             <div className="mt-6 flex justify-end gap-3">
