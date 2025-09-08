@@ -17,6 +17,7 @@ function ChemoterapieForm() {
   const [cycleNumber, setCycleNumber] = useState<string>('');
   const [cycleStartDate, setCycleStartDate] = useState<string>('');
   const [interval, setInterval] = useState<string>('');
+  const [dalsiCyklusAplikovan, setDalsiCyklusAplikovan] = useState<string>('');
   const [bloodDraw, setBloodDraw] = useState<string>('');
   const [growthFactor, setGrowthFactor] = useState<string>('');
   const [antiemetika, setAntiemetika] = useState<{ [key: string]: boolean }>({
@@ -117,16 +118,23 @@ function ChemoterapieForm() {
   }
 
   function generateCyklusChemoterapie() {
-    if (!cycleStartDate) {
+    if (!cycleStartDate || !dalsiCyklusAplikovan) {
       return;
     }
 
     let nextChemoDate = getNextChemoDate();
 
-    setDalsiCyklusChemoterapie(`
-			Další cyklus chemoterapie za hospitalizace na 2. lůžkové stanici v plánu <strong>${nextChemoDate.toLocaleDateString()}</strong>.
-			Pacient bude stran přesného času příchodu telefonicky informován pracovní den předem po 12té hodině. 
-		`);
+    if (dalsiCyklusAplikovan === 'za-hospitalizace') {
+      setDalsiCyklusChemoterapie(`
+        Další cyklus chemoterapie za hospitalizace na 2. lůžkové stanici v plánu <strong>${nextChemoDate.toLocaleDateString()}</strong>.
+        Pacient bude stran přesného času příchodu telefonicky informován pracovní den předem po 12té hodině. 
+      `);
+    } else {
+      setDalsiCyklusChemoterapie(`
+        Další cyklus chemoterapie bude aplikován abulantně na stacionáři onkologické kliniky (3.patro, uzel B) <strong>${nextChemoDate.toLocaleDateString()}</strong>.
+        Pacient si zavolá na tel. 224 434 745 pracovní den předem po 12té hodině. 
+      `);
+    }
   }
 
   function generateText(e: FormEvent<HTMLFormElement>) {
@@ -331,6 +339,40 @@ function ChemoterapieForm() {
                     { id: '3-tydny', label: '3 týdny' },
                     { id: '4-tydny', label: '4 týdny' },
                     { id: 'jine', label: 'Jiné' },
+                  ].map((opt) => (
+                    <Radio
+                      key={opt.id}
+                      value={opt.id}
+                      className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      <span
+                        aria-hidden
+                        className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                      />
+                      <span className="block text-sm/6 font-normal text-gray-900">
+                        {opt.label}
+                      </span>
+                    </Radio>
+                  ))}
+                </RadioGroup>
+              </Field>
+            </div>
+
+            <div className="sm:col-span-4"></div>
+
+            <div className="sm:col-span-2">
+              <Field>
+                <Label className="text-sm/6 font-medium text-gray-900">
+                  Další cyklus bude aplikován
+                </Label>
+                <RadioGroup
+                  value={dalsiCyklusAplikovan}
+                  onChange={setDalsiCyklusAplikovan}
+                  className="mt-6 space-y-2"
+                >
+                  {[
+                    { id: 'za-hospitalizace', label: 'Za hospitalizace' },
+                    { id: 'na-stacionari', label: 'Na stacionáři' },
                   ].map((opt) => (
                     <Radio
                       key={opt.id}
