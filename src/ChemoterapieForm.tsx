@@ -631,186 +631,193 @@ function ChemoterapieForm() {
         className="relative z-10"
       >
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-full max-w-3xl rounded-md bg-white p-6 shadow-lg">
-            <div className="mt-6 text-sm text-gray-600 flex flex-col gap-y-8">
-              <div className="flex flex-col gap-y-2">
-                <p className="text-md">
-                  <span className="text-lg">PRŮBĚH HOSPITALIZACE:</span>{' '}
-                  {prubehHospitalizace}
-                </p>
-              </div>
-              <div className="flex flex-col gap-y-2">
-                <p className="text-md">
-                  <span className="text-lg">STAV PACIENTA PŘI PROPUSTĚNÍ:</span>{' '}
-                  {stavPriPropusteni}
-                </p>
-              </div>
+        <div className="fixed inset-0 overflow-y-auto p-4">
+          <div className="flex items-center justify-center">
+            <DialogPanel className="w-full max-w-3xl rounded-md bg-white p-6 shadow-lg">
+              <div className="mt-6 text-sm text-gray-600 flex flex-col gap-y-8">
+                <div className="flex flex-col gap-y-2">
+                  <p className="text-md">
+                    <span className="text-lg">PRŮBĚH HOSPITALIZACE:</span>{' '}
+                    {prubehHospitalizace}
+                  </p>
+                </div>
+                <div className="flex flex-col gap-y-2">
+                  <p className="text-md">
+                    <span className="text-lg">
+                      STAV PACIENTA PŘI PROPUSTĚNÍ:
+                    </span>{' '}
+                    {stavPriPropusteni}
+                  </p>
+                </div>
 
-              <div className="flex flex-col gap-y-2">
-                <p className="text-md">
-                  <span className="text-lg">ZÁVĚR:</span>{' '}
-                  <span className="italic text-red-500">
-                    ... Doplnit: Diagnostický souhrn ...
-                  </span>
-                </p>
-              </div>
+                <div className="flex flex-col gap-y-2">
+                  <p className="text-md">
+                    <span className="text-lg">ZÁVĚR:</span>{' '}
+                    <span className="italic text-red-500">
+                      ... Doplnit: Diagnostický souhrn ...
+                    </span>
+                  </p>
+                </div>
 
-              <div className="flex flex-col gap-y-2">
-                <h1 className="text-lg uppercase">DOPORUČENÍ:</h1>
-                <h1 className="text-lg">Medikace:</h1>
-                <p className="text-md">
-                  <span className="italic text-red-500">
-                    ... Doplnit: Chronická medikace: ...
-                  </span>
-                </p>
+                <div className="flex flex-col gap-y-2">
+                  <h1 className="text-lg uppercase">DOPORUČENÍ:</h1>
+                  <h1 className="text-lg">Medikace:</h1>
+                  <p className="text-md">
+                    <span className="italic text-red-500">
+                      ... Doplnit: Chronická medikace: ...
+                    </span>
+                  </p>
 
-                {antiemetika['degan'] ||
-                antiemetika['torecan'] ||
-                antiemetika['novetron'] ||
-                antiemetika['granisetron'] ? (
-                  <>
-                    <p className="text-md">
-                      <span className="underline">Při nevolnosti:</span>
-                    </p>
-                    <ul className="list-disc pl-4">
-                      {antiemetika['degan'] ? (
-                        <>
-                          <li className="text-md">
-                            Degan 10mg tbl. max 3/den, CAVE: neužívat při průjmu
-                          </li>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                      {antiemetika['torecan'] ? (
-                        <>
-                          <li className="text-md">
-                            Torecan 6,5mg tbl max 3/den
-                          </li>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                      {antiemetika['novetron'] ? (
-                        <>
-                          <li className="text-md">
-                            Novetron tbl 1 tbl. pod jazyk, vycucat, max 2/den,
-                            CAVE: způsobuje zácpu
-                          </li>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                      {antiemetika['granisetron'] ? (
-                        <>
-                          <li className="text-md">
-                            Granisetron 1mg tbl. max 2/den
-                          </li>
-                        </>
-                      ) : (
-                        <></>
-                      )}
-                    </ul>
-                    <br />
-                  </>
-                ) : (
-                  <></>
-                )}
-                {Array.from(rustoveFaktory).length > 0 ? (
-                  <>
-                    <p className="text-md">
-                      <strong>{rustoveFaktory}</strong>
-                    </p>
-                    <p className="text-md">
-                      Jedná se o růstové faktory,které podporují tvorbu bílých
-                      krvinek. Po aplikaci se mohou objevit chřipkovité příznaky
-                      (bolest hlavy, kloubů, svalů, zvýšená tělesná teplota), v
-                      takovém případě pac. užije volně prodejné protizánětlivé
-                      léky (Paralen, Ibalgin).
-                      <span className="underline">
-                        Do doby aplikace přípravek uchovávejte v lednici.
-                      </span>
-                    </p>
-                    <p className="text-md">
-                      Záznam o poučení nakládání s odpadem ze zdravotnické péče
-                    </p>
-                    <p className="text-md">
-                      Pacient (osoba o pacienta pečující) byl poučen o nakládání
-                      s ostrým kontaminovaným odpadem, s nepoužitelnými léčivy a
-                      dalším odpadem ze zdravotní péče v domácím prostředí.
-                    </p>
-                    <p className="text-md">
-                      Pacient edukován o podávání medikace a injekčním podání
-                      léčby.
-                    </p>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-
-              <div className="flex flex-col gap-y-2">
-                <h1 className="text-lg">Kontrola lékaře:</h1>
-                <ul className="list-disc pl-4">
-                  {gpCheck === 'Ano' ? (
+                  {antiemetika['degan'] ||
+                  antiemetika['torecan'] ||
+                  antiemetika['novetron'] ||
+                  antiemetika['granisetron'] ? (
                     <>
-                      <li className="text-md">
-                        Kontrola u praktického lékaře do 3 dnů od propuštění.
-                      </li>
+                      <p className="text-md">
+                        <span className="underline">Při nevolnosti:</span>
+                      </p>
+                      <ul className="list-disc pl-4">
+                        {antiemetika['degan'] ? (
+                          <>
+                            <li className="text-md">
+                              Degan 10mg tbl. max 3/den, CAVE: neužívat při
+                              průjmu
+                            </li>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {antiemetika['torecan'] ? (
+                          <>
+                            <li className="text-md">
+                              Torecan 6,5mg tbl max 3/den
+                            </li>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {antiemetika['novetron'] ? (
+                          <>
+                            <li className="text-md">
+                              Novetron tbl 1 tbl. pod jazyk, vycucat, max 2/den,
+                              CAVE: způsobuje zácpu
+                            </li>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {antiemetika['granisetron'] ? (
+                          <>
+                            <li className="text-md">
+                              Granisetron 1mg tbl. max 2/den
+                            </li>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                      </ul>
+                      <br />
                     </>
                   ) : (
                     <></>
                   )}
-                  {Array.from(odbery1).length > 0 ? (
+                  {Array.from(rustoveFaktory).length > 0 ? (
+                    <>
+                      <p className="text-md">
+                        <strong>{rustoveFaktory}</strong>
+                      </p>
+                      <p className="text-md">
+                        Jedná se o růstové faktory,které podporují tvorbu bílých
+                        krvinek. Po aplikaci se mohou objevit chřipkovité
+                        příznaky (bolest hlavy, kloubů, svalů, zvýšená tělesná
+                        teplota), v takovém případě pac. užije volně prodejné
+                        protizánětlivé léky (Paralen, Ibalgin).
+                        <span className="underline">
+                          Do doby aplikace přípravek uchovávejte v lednici.
+                        </span>
+                      </p>
+                      <p className="text-md">
+                        Záznam o poučení nakládání s odpadem ze zdravotnické
+                        péče
+                      </p>
+                      <p className="text-md">
+                        Pacient (osoba o pacienta pečující) byl poučen o
+                        nakládání s ostrým kontaminovaným odpadem, s
+                        nepoužitelnými léčivy a dalším odpadem ze zdravotní péče
+                        v domácím prostředí.
+                      </p>
+                      <p className="text-md">
+                        Pacient edukován o podávání medikace a injekčním podání
+                        léčby.
+                      </p>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-y-2">
+                  <h1 className="text-lg">Kontrola lékaře:</h1>
+                  <ul className="list-disc pl-4">
+                    {gpCheck === 'Ano' ? (
+                      <>
+                        <li className="text-md">
+                          Kontrola u praktického lékaře do 3 dnů od propuštění.
+                        </li>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {Array.from(odbery1).length > 0 ? (
+                      <li
+                        className="text-md"
+                        dangerouslySetInnerHTML={{ __html: odbery1 }}
+                      ></li>
+                    ) : (
+                      <></>
+                    )}
                     <li
                       className="text-md"
-                      dangerouslySetInnerHTML={{ __html: odbery1 }}
+                      dangerouslySetInnerHTML={{ __html: odbery2 }}
                     ></li>
-                  ) : (
-                    <></>
-                  )}
-                  <li
-                    className="text-md"
-                    dangerouslySetInnerHTML={{ __html: odbery2 }}
-                  ></li>
-                  <li
-                    className="text-md"
-                    dangerouslySetInnerHTML={{
-                      __html: dalsiCyklusChemoterapie,
-                    }}
-                  ></li>
-                  {restaging === 'objednan' ? (
-                    <li className="text-md">Restaging: Objednán na ...</li>
-                  ) : (
-                    <></>
-                  )}
-                  {restaging === 'bude-objednano' ? (
-                    <li className="text-md">Restaging: Bude objednáno.</li>
-                  ) : (
-                    <></>
-                  )}
-                </ul>
-                <p className="text-md"></p>
-                <p className="text-md">Plán péče: ...</p>
-                <p className="text-md">{zpusobDopravy}</p>
-                <p className="text-md">
-                  V případě komplikací nás kontaktujte na tel.čísle: 224434756
-                  nebo 224434794 (lůžková stanice), 224434730 (sesterna),
-                  224434760 (ambulance).
-                </p>
+                    <li
+                      className="text-md"
+                      dangerouslySetInnerHTML={{
+                        __html: dalsiCyklusChemoterapie,
+                      }}
+                    ></li>
+                    {restaging === 'objednan' ? (
+                      <li className="text-md">Restaging: Objednán na ...</li>
+                    ) : (
+                      <></>
+                    )}
+                    {restaging === 'bude-objednano' ? (
+                      <li className="text-md">Restaging: Bude objednáno.</li>
+                    ) : (
+                      <></>
+                    )}
+                  </ul>
+                  <p className="text-md"></p>
+                  <p className="text-md">Plán péče: ...</p>
+                  <p className="text-md">{zpusobDopravy}</p>
+                  <p className="text-md">
+                    V případě komplikací nás kontaktujte na tel.čísle: 224434756
+                    nebo 224434794 (lůžková stanice), 224434730 (sesterna),
+                    224434760 (ambulance).
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="mt-6 flex justify-end gap-3">
-              <button
-                type="button"
-                className="rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-300"
-                onClick={() => setIsDialogOpen(false)}
-              >
-                Zavřít
-              </button>
-            </div>
-          </DialogPanel>
+              <div className="mt-6 flex justify-end gap-3">
+                <button
+                  type="button"
+                  className="rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-300"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Zavřít
+                </button>
+              </div>
+            </DialogPanel>
+          </div>
         </div>
       </Dialog>
     </form>
