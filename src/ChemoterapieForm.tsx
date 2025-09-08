@@ -131,7 +131,7 @@ function ChemoterapieForm() {
       `);
     } else {
       setDalsiCyklusChemoterapie(`
-        Další cyklus chemoterapie bude aplikován abulantně na stacionáři onkologické kliniky (3.patro, uzel B) <strong>${nextChemoDate.toLocaleDateString()}</strong>.
+        Další cyklus chemoterapie bude aplikován ambulantně na stacionáři onkologické kliniky (3.patro, uzel B) <strong>${nextChemoDate.toLocaleDateString()}</strong>.
         Pacient si zavolá na tel. 224 434 745 pracovní den předem po 12té hodině. 
       `);
     }
