@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import ChemoterapieForm from './ChemoterapieForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RadioterapieForm from './RadioterapieForm';
 
 interface NavigationItem {
@@ -10,8 +10,8 @@ interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Chemoterapie', href: 'chemoterapie', component: ChemoterapieForm },
-  { name: 'Radioterapie', href: 'radioterapie', component: RadioterapieForm },
+  { name: 'Chemoterapie', href: '#chemoterapie', component: ChemoterapieForm },
+  { name: 'Radioterapie', href: '#radioterapie', component: RadioterapieForm },
 ];
 
 function classNames(...classes: string[]) {
@@ -20,6 +20,30 @@ function classNames(...classes: string[]) {
 
 function App() {
   const [currentForm, setCurrentForm] = useState<NavigationItem>(navigation[0]);
+
+  // Function to get form from hash
+  const getFormFromHash = (hash: string): NavigationItem => {
+    const form = navigation.find((item) => item.href === hash);
+    return form || navigation[0]; // Default to first form if hash not found
+  };
+
+  // Handle initial load and hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      setCurrentForm(getFormFromHash(hash));
+    };
+
+    // Set initial form based on current hash
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   return (
     <div className="min-h-full">
@@ -31,8 +55,10 @@ function App() {
                 {navigation.map((item) => (
                   <a
                     key={item.name}
-                    onClick={() => {
-                      setCurrentForm(item);
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.hash = item.href;
                     }}
                     aria-current={
                       currentForm.href === item.href ? 'page' : undefined
@@ -41,7 +67,7 @@ function App() {
                       currentForm.href === item.href
                         ? 'bg-gray-900 text-white'
                         : 'text-gray-300 hover:bg-white/5 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium'
+                      'rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
                     )}
                   >
                     {item.name}
