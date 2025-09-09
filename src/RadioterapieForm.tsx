@@ -16,12 +16,16 @@ function RadioterapieForm() {
   const [diagnoza, setDiagnoza] = useState<string>('');
   const [histologie, setHistologie] = useState<string>('');
   const [lokalizace, setLokalizace] = useState<string>('');
+  const [lokalizaceJine, setLokalizaceJine] = useState<string>('');
   const [chemoterapie, setChemoterapie] = useState<string>('');
+  const [chemoterapieJine, setChemoterapieJine] = useState<string>('');
   const [fixace, setFixace] = useState<string>('');
+  const [fixaceJine, setFixaceJine] = useState<string>('');
   const [poloha, setPoloha] = useState<string>('');
   const [bolus, setBolus] = useState<string>('');
   const [zamer, setZamer] = useState<string>('');
   const [frakcionace, setFrakcionace] = useState<string>('');
+  const [frakcionaceJine, setFrakcionaceJine] = useState<string>('');
   const [odbery, setOdbery] = useState<string>('');
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
@@ -172,15 +176,48 @@ function RadioterapieForm() {
                     >
                       Lokalizace
                     </Label>
-                    <Input
-                      id="lokalizace"
-                      name="lokalizace"
-                      type="text"
-                      placeholder="Např. horni končetina, paže"
+                    <RadioGroup
                       value={lokalizace}
-                      onChange={(e) => setLokalizace(e.target.value)}
-                      className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
+                      onChange={setLokalizace}
+                      className="mt-6 space-y-2"
+                    >
+                      {[
+                        { label: 'horní končetina' },
+                        { label: 'dolní končetina' },
+                        { label: 'retroperitoneum' },
+                        { label: 'jiné' },
+                      ].map((opt) => (
+                        <Radio
+                          key={opt.label}
+                          value={opt.label}
+                          className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          <span
+                            aria-hidden
+                            className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                          />
+                          <span className="block text-sm/6 font-normal text-gray-900">
+                            {opt.label}
+                          </span>
+                          {opt.label === 'jiné' ? (
+                            <>
+                              <Input
+                                id="lokalizace-jine"
+                                name="lokalizace-jine"
+                                type="text"
+                                value={lokalizaceJine}
+                                onChange={(e) =>
+                                  setLokalizaceJine(e.target.value)
+                                }
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-100 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                              />
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
                   </Field>
                 </div>
 
@@ -194,15 +231,48 @@ function RadioterapieForm() {
                     >
                       Chemoterapie
                     </Label>
-                    <Input
-                      id="chemoterapie"
-                      name="chemoterapie"
-                      type="text"
-                      placeholder="Např. MAI"
+
+                    <RadioGroup
                       value={chemoterapie}
-                      onChange={(e) => setChemoterapie(e.target.value)}
-                      className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
+                      onChange={setChemoterapie}
+                      className="mt-6 space-y-2"
+                    >
+                      {[
+                        { label: 'ne' },
+                        { label: 'MAI' },
+                        { label: 'jiné' },
+                      ].map((opt) => (
+                        <Radio
+                          key={opt.label}
+                          value={opt.label}
+                          className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          <span
+                            aria-hidden
+                            className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                          />
+                          <span className="block text-sm/6 font-normal text-gray-900">
+                            {opt.label}
+                          </span>
+                          {opt.label === 'jiné' ? (
+                            <>
+                              <Input
+                                id="chemoterapie-jine"
+                                name="chemoterapie-jine"
+                                type="text"
+                                value={chemoterapieJine}
+                                onChange={(e) =>
+                                  setChemoterapieJine(e.target.value)
+                                }
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-100 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                              />
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
                   </Field>
                 </div>
 
@@ -216,15 +286,45 @@ function RadioterapieForm() {
                     >
                       Fixace
                     </Label>
-                    <Input
-                      id="fixace"
-                      name="fixace"
-                      type="text"
-                      placeholder="Např. Vakuová matrace"
+                    <RadioGroup
                       value={fixace}
-                      onChange={(e) => setFixace(e.target.value)}
-                      className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
+                      onChange={setFixace}
+                      className="mt-6 space-y-2"
+                    >
+                      {[
+                        { label: 'Vakuová matrace' },
+                        { label: 'Combifix' },
+                        { label: 'jiné' },
+                      ].map((opt) => (
+                        <Radio
+                          key={opt.label}
+                          value={opt.label}
+                          className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          <span
+                            aria-hidden
+                            className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                          />
+                          <span className="block text-sm/6 font-normal text-gray-900">
+                            {opt.label}
+                          </span>
+                          {opt.label === 'jiné' ? (
+                            <>
+                              <Input
+                                id="fixace-jine"
+                                name="fixace-jine"
+                                type="text"
+                                value={fixaceJine}
+                                onChange={(e) => setFixaceJine(e.target.value)}
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-100 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                              />
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
                   </Field>
                 </div>
 
@@ -334,15 +434,48 @@ function RadioterapieForm() {
                     >
                       Frakcionace
                     </Label>
-                    <Input
-                      id="frakcionace"
-                      name="frakcionace"
-                      type="text"
-                      placeholder="Např. 50Gy (25x2Gy)"
+                    <RadioGroup
                       value={frakcionace}
-                      onChange={(e) => setFrakcionace(e.target.value)}
-                      className="mt-2 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
+                      onChange={setFrakcionace}
+                      className="mt-6 space-y-2"
+                    >
+                      {[
+                        { label: '50Gy (25x2Gy)' },
+                        { label: '60Gy(30x2Gy)' },
+                        { label: '36Gy(18x2Gy)' },
+                        { label: 'jiné' },
+                      ].map((opt) => (
+                        <Radio
+                          key={opt.label}
+                          value={opt.label}
+                          className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          <span
+                            aria-hidden
+                            className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                          />
+                          <span className="block text-sm/6 font-normal text-gray-900">
+                            {opt.label}
+                          </span>
+                          {opt.label === 'jiné' ? (
+                            <>
+                              <Input
+                                id="frakcionace-jine"
+                                name="frakcionace-jine"
+                                type="text"
+                                value={frakcionaceJine}
+                                onChange={(e) =>
+                                  setFrakcionaceJine(e.target.value)
+                                }
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-100 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                              />
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
                   </Field>
                 </div>
 
@@ -453,15 +586,19 @@ function RadioterapieForm() {
                     <br />
                     <strong>Indikována {zamer} radioterapie</strong>
                     <br />
-                    Cílový objem: {histologie} {lokalizace}
+                    Cílový objem: {histologie}{' '}
+                    {lokalizace === 'jiné' ? lokalizaceJine : lokalizace}
                     <br />
-                    Plánovaný frakcionační režim: {frakcionace}
+                    Plánovaný frakcionační režim:{' '}
+                    {frakcionace === 'jiné' ? frakcionaceJine : frakcionace}
                     <br />
-                    Navrhovaná poloha a fixace: {poloha}, {fixace}
+                    Navrhovaná poloha a fixace: {poloha},{' '}
+                    {fixace === 'jiné' ? fixaceJine : fixace}
                     <br />
                     Využití bolusu: {bolus}
                     <br />
-                    Kombinace s jinými terapeutickými modalitami: {chemoterapie}
+                    Kombinace s jinými terapeutickými modalitami:{' '}
+                    {chemoterapie === 'jiné' ? chemoterapieJine : chemoterapie}
                     <br />
                     Podepsán informovaný souhlas. Péče o ozařovanou oblast dle{' '}
                     <span className="underline">doporučení v IS</span>.
