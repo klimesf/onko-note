@@ -85,7 +85,7 @@ function RadioterapieForm() {
                     Vyberte jednu z možností
                   </option>
                   <option value="lipanova">
-                    MUDr.Michaela Klimeš Lipánová
+                    MUDr. Michaela Klimeš Lipánová
                   </option>
                   <option value="domansky">MUDr. Martin Domanský</option>
                   <option value="neurceno">Neurčeno</option>
@@ -238,13 +238,13 @@ function RadioterapieForm() {
                       className="mt-6 space-y-2"
                     >
                       {[
-                        { label: 'ne' },
-                        { label: 'MAI' },
-                        { label: 'jiné' },
+                        { id: 'ne', label: 'ne' },
+                        { id: 'chemoterapie - MAI', label: 'MAI' },
+                        { id: 'jiné', label: 'jiné' },
                       ].map((opt) => (
                         <Radio
-                          key={opt.label}
-                          value={opt.label}
+                          key={opt.id}
+                          value={opt.id}
                           className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                           <span
