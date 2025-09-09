@@ -1,10 +1,17 @@
 import { Disclosure } from '@headlessui/react';
 import ChemoterapieForm from './ChemoterapieForm';
+import { useState } from 'react';
+import RadioterapieForm from './RadioterapieForm';
 
-const navigation = [
-  { name: 'Chemoterapie', href: '#', current: true },
-  { name: 'Biopsie', href: '#', current: false },
-  { name: 'Brachyterapie', href: '#', current: false },
+interface NavigationItem {
+  name: string;
+  href: string;
+  component: React.ComponentType;
+}
+
+const navigation: NavigationItem[] = [
+  { name: 'Chemoterapie', href: 'chemoterapie', component: ChemoterapieForm },
+  { name: 'Radioterapie', href: 'radioterapie', component: RadioterapieForm },
 ];
 
 function classNames(...classes: string[]) {
@@ -12,6 +19,8 @@ function classNames(...classes: string[]) {
 }
 
 function App() {
+  const [currentForm, setCurrentForm] = useState<NavigationItem>(navigation[0]);
+
   return (
     <div className="min-h-full">
       <Disclosure as="nav" className="bg-gray-800">
@@ -22,10 +31,14 @@ function App() {
                 {navigation.map((item) => (
                   <a
                     key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
+                    onClick={() => {
+                      setCurrentForm(item);
+                    }}
+                    aria-current={
+                      currentForm.href === item.href ? 'page' : undefined
+                    }
                     className={classNames(
-                      item.current
+                      currentForm.href === item.href
                         ? 'bg-gray-900 text-white'
                         : 'text-gray-300 hover:bg-white/5 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium'
@@ -43,13 +56,13 @@ function App() {
       <header className="relative bg-white shadow-sm">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Chemoterapie
+            {currentForm.name}
           </h1>
         </div>
       </header>
       <main>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <ChemoterapieForm />
+          <currentForm.component />
         </div>
       </main>
     </div>
