@@ -12,7 +12,7 @@ interface NavigationItem {
 const navigation: NavigationItem[] = [
   { name: 'Chemoterapie', href: '#chemoterapie', component: ChemoterapieForm },
   {
-    name: 'Radioterapie - Sarkom',
+    name: 'Radioterapie',
     href: '#radioterapie',
     component: RadioterapieForm,
   },
