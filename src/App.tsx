@@ -11,7 +11,11 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   { name: 'Chemoterapie', href: '#chemoterapie', component: ChemoterapieForm },
-  { name: 'Radioterapie', href: '#radioterapie', component: RadioterapieForm },
+  {
+    name: 'Radioterapie - Sarkom',
+    href: '#radioterapie',
+    component: RadioterapieForm,
+  },
 ];
 
 function classNames(...classes: string[]) {
