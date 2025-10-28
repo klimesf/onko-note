@@ -1,4 +1,11 @@
-import { Field, Input, Label, Radio, RadioGroup, Select } from '@headlessui/react';
+import {
+  Field,
+  Input,
+  Label,
+  Radio,
+  RadioGroup,
+  Select,
+} from '@headlessui/react';
 import type { Dispatch, SetStateAction } from 'react';
 
 type SarkomSectionProps = {
@@ -64,8 +71,14 @@ export default function SarkomSection(props: SarkomSectionProps) {
     <>
       <div className="sm:col-span-2">
         <Field>
-          <Label className="text-sm/6 font-medium text-gray-900">Histologie</Label>
-          <RadioGroup value={histologie} onChange={setHistologie} className="mt-6 space-y-2">
+          <Label className="text-sm/6 font-medium text-gray-900">
+            Histologie
+          </Label>
+          <RadioGroup
+            value={histologie}
+            onChange={setHistologie}
+            className="mt-6 space-y-2"
+          >
             {[
               { id: 'Myxoidní liposarkom', label: 'Myxoidní liposarkom' },
               { id: 'Liposarkom', label: 'Liposarkom' },
@@ -84,7 +97,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
               </Radio>
             ))}
           </RadioGroup>
@@ -95,10 +110,17 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label htmlFor="lokalizace" className="block text-sm/6 font-medium text-gray-900">
+          <Label
+            htmlFor="lokalizace"
+            className="block text-sm/6 font-medium text-gray-900"
+          >
             Lokalizace
           </Label>
-          <RadioGroup value={lokalizace} onChange={setLokalizace} className="mt-6 space-y-2">
+          <RadioGroup
+            value={lokalizace}
+            onChange={setLokalizace}
+            className="mt-6 space-y-2"
+          >
             {[
               { label: 'horní končetina' },
               { label: 'dolní končetina' },
@@ -114,7 +136,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
                 {opt.label === 'jiné' ? (
                   <>
                     <Input
@@ -139,11 +163,18 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label htmlFor="chemoterapie" className="block text-sm/6 font-medium text-gray-900">
+          <Label
+            htmlFor="chemoterapie"
+            className="block text-sm/6 font-medium text-gray-900"
+          >
             Chemoterapie
           </Label>
 
-          <RadioGroup value={chemoterapie} onChange={setChemoterapie} className="mt-6 space-y-2">
+          <RadioGroup
+            value={chemoterapie}
+            onChange={setChemoterapie}
+            className="mt-6 space-y-2"
+          >
             {[
               { id: 'ne', label: 'ne' },
               { id: 'chemoterapie - MAI', label: 'MAI' },
@@ -158,7 +189,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
                 {opt.label === 'jiné' ? (
                   <>
                     <Input
@@ -183,10 +216,17 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label htmlFor="fixace" className="block text-sm/6 font-medium text-gray-900">
+          <Label
+            htmlFor="fixace"
+            className="block text-sm/6 font-medium text-gray-900"
+          >
             Fixace
           </Label>
-          <RadioGroup value={fixace} onChange={setFixace} className="mt-6 space-y-2">
+          <RadioGroup
+            value={fixace}
+            onChange={setFixace}
+            className="mt-6 space-y-2"
+          >
             {[
               { label: 'Vakuová matrace' },
               { label: 'Combifix' },
@@ -201,7 +241,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
                 {opt.label === 'jiné' ? (
                   <>
                     <Input
@@ -227,7 +269,11 @@ export default function SarkomSection(props: SarkomSectionProps) {
       <div className="sm:col-span-2">
         <Field>
           <Label className="text-sm/6 font-medium text-gray-900">Poloha</Label>
-          <RadioGroup value={poloha} onChange={setPoloha} className="mt-6 space-y-2">
+          <RadioGroup
+            value={poloha}
+            onChange={setPoloha}
+            className="mt-6 space-y-2"
+          >
             {[
               { id: 'na-zadech', label: 'Na zádech' },
               { id: 'na-brise', label: 'Na břiše' },
@@ -241,7 +287,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
               </Radio>
             ))}
           </RadioGroup>
@@ -252,7 +300,10 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label htmlFor="bolus" className="block text-sm/6 font-medium text-gray-900">
+          <Label
+            htmlFor="bolus"
+            className="block text-sm/6 font-medium text-gray-900"
+          >
             Bolus
           </Label>
           <Select
@@ -275,8 +326,14 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label className="text-sm/6 font-medium text-gray-900">Záměr radioterapie</Label>
-          <RadioGroup value={zamer} onChange={setZamer} className="mt-6 space-y-2">
+          <Label className="text-sm/6 font-medium text-gray-900">
+            Záměr radioterapie
+          </Label>
+          <RadioGroup
+            value={zamer}
+            onChange={setZamer}
+            className="mt-6 space-y-2"
+          >
             {[
               { id: 'adjuvantní', label: 'Adjuvantní' },
               { id: 'neoadjuvantní', label: 'Neoadjuvantní' },
@@ -292,7 +349,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
               </Radio>
             ))}
           </RadioGroup>
@@ -303,10 +362,17 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label htmlFor="frakcionace" className="block text-sm/6 font-medium text-gray-900">
+          <Label
+            htmlFor="frakcionace"
+            className="block text-sm/6 font-medium text-gray-900"
+          >
             Frakcionace
           </Label>
-          <RadioGroup value={frakcionace} onChange={setFrakcionace} className="mt-6 space-y-2">
+          <RadioGroup
+            value={frakcionace}
+            onChange={setFrakcionace}
+            className="mt-6 space-y-2"
+          >
             {[
               { label: '50Gy (25x2Gy)' },
               { label: '60Gy(30x2Gy)' },
@@ -322,7 +388,9 @@ export default function SarkomSection(props: SarkomSectionProps) {
                   aria-hidden
                   className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
                 />
-                <span className="block text-sm/6 font-normal text-gray-900">{opt.label}</span>
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
                 {opt.label === 'jiné' ? (
                   <>
                     <Input
@@ -347,7 +415,10 @@ export default function SarkomSection(props: SarkomSectionProps) {
 
       <div className="sm:col-span-2">
         <Field>
-          <Label htmlFor="krevni-odbery" className="block text-sm/6 font-medium text-gray-900">
+          <Label
+            htmlFor="krevni-odbery"
+            className="block text-sm/6 font-medium text-gray-900"
+          >
             Krevní odběry
           </Label>
           <Select
@@ -370,5 +441,3 @@ export default function SarkomSection(props: SarkomSectionProps) {
     </>
   );
 }
-
-

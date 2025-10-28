@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  DialogPanel,
-  Field,
-  Label,
-  Select,
-} from '@headlessui/react';
+import { Dialog, DialogPanel, Field, Label, Select } from '@headlessui/react';
 import { useState, type FormEvent } from 'react';
 import SarkomSection from './SarkomSection';
 import RektumSection from './RaktumSection';
