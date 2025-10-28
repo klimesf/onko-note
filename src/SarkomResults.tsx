@@ -1,5 +1,5 @@
 type SarkomResultsProps = {
-	gender: string;
+  gender: string;
   zamer: string;
   histologie: string;
   lokalizace: string;
@@ -16,7 +16,7 @@ type SarkomResultsProps = {
 };
 
 function SarkomResults({
-	gender,
+  gender,
   zamer,
   histologie,
   lokalizace,
@@ -33,25 +33,25 @@ function SarkomResults({
 }: SarkomResultsProps) {
   return (
     <>
-			<div className="flex flex-col gap-y-2">
-				<p className="text-md">
-					<strong>Diagnostický souhrn:</strong>
-				</p>
-			</div>
-			<div className="flex flex-col gap-y-2">
-				<p className="text-md">
-					<strong>Status praesens:</strong>
-					<br />
-					Výška: Váha: PS ECOG: <br />
-					Subjektivně: <br />
-					Objektivně:&nbsp;
-					{gender === 'zena'
-						? 'Orientovaný, spolupracující, afebrilní, KP kompenzovaný, břicho klidné, aperitonální, DKK bez známek HŽT.'
-						: 'Orientovaná, spolupracující, afebrilní, KP kompenzovaná, břicho klidné, aperitonální, DKK bez známek HŽT.'}
-					<br />
-					Status localis: <br />
-				</p>
-			</div>
+      <div className="flex flex-col gap-y-2">
+        <p className="text-md">
+          <strong>Diagnostický souhrn:</strong>
+        </p>
+      </div>
+      <div className="flex flex-col gap-y-2">
+        <p className="text-md">
+          <strong>Status praesens:</strong>
+          <br />
+          Výška: Váha: PS ECOG: <br />
+          Subjektivně: <br />
+          Objektivně:&nbsp;
+          {gender === 'zena'
+            ? 'Orientovaný, spolupracující, afebrilní, KP kompenzovaný, břicho klidné, aperitonální, DKK bez známek HŽT.'
+            : 'Orientovaná, spolupracující, afebrilní, KP kompenzovaná, břicho klidné, aperitonální, DKK bez známek HŽT.'}
+          <br />
+          Status localis: <br />
+        </p>
+      </div>
       <div className="flex flex-col gap-y-2">
         <p className="text-md">
           <strong>Závěr:</strong>

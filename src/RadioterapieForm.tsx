@@ -1,8 +1,9 @@
 import { Dialog, DialogPanel, Field, Label, Select } from '@headlessui/react';
 import { useState, type FormEvent } from 'react';
+import RektumSection from './RaktumSection';
+import RektumResults from './RektumResults';
 import SarkomSection from './SarkomSection';
 import SarkomResults from './SarkomResults';
-import RektumSection from './RaktumSection';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
@@ -25,6 +26,7 @@ function RadioterapieForm() {
   const [frakcionace, setFrakcionace] = useState<string>('');
   const [frakcionaceJine, setFrakcionaceJine] = useState<string>('');
   const [odbery, setOdbery] = useState<string>('');
+  const [rezim, setRezim] = useState<string>('');
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -187,6 +189,8 @@ function RadioterapieForm() {
                 setFrakcionaceJine={setFrakcionaceJine}
                 odbery={odbery}
                 setOdbery={setOdbery}
+                rezim={rezim}
+                setRezim={setRezim}
               />
             ) : (
               <></>
@@ -258,6 +262,28 @@ function RadioterapieForm() {
                     chemoterapie={chemoterapie}
                     chemoterapieJine={chemoterapieJine}
                     odbery={odbery}
+                  />
+                ) : (
+                  <></>
+                )}
+                {diagnoza === 'rektum' ? (
+                  <RektumResults
+                    gender={gender}
+                    zamer={zamer}
+                    histologie={histologie}
+                    histologieJine={histologieJine}
+                    lokalizace={lokalizace}
+                    frakcionace={frakcionace}
+                    frakcionaceJine={frakcionaceJine}
+                    poloha={poloha}
+                    polohaJine={polohaJine}
+                    fixace={fixace}
+                    fixaceJine={fixaceJine}
+                    chemoterapie={chemoterapie}
+                    chemoterapieJine={chemoterapieJine}
+                    odbery={odbery}
+                    rezim={rezim}
+                    odstup={odstup}
                   />
                 ) : (
                   <></>

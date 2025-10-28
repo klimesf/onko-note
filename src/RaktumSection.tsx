@@ -39,6 +39,8 @@ type RektumSectionProps = {
   setFrakcionaceJine: Dispatch<SetStateAction<string>>;
   odbery: string;
   setOdbery: Dispatch<SetStateAction<string>>;
+  rezim: string;
+  setRezim: Dispatch<SetStateAction<string>>;
 };
 
 export default function RektumSection(props: RektumSectionProps) {
@@ -73,9 +75,12 @@ export default function RektumSection(props: RektumSectionProps) {
     setFrakcionaceJine,
     odbery,
     setOdbery,
+    rezim,
+    setRezim,
   } = props;
 
   const onRezimChange = (rezim: string) => {
+    setRezim(rezim);
     switch (rezim) {
       case '1':
         setZamer('neoadjuvantní');
@@ -222,23 +227,25 @@ export default function RektumSection(props: RektumSectionProps) {
             onChange={setLokalizace}
             className="mt-6 space-y-2"
           >
-            {[{ label: 'Horní' }, { label: 'Střední' }, { label: 'Dolní' }].map(
-              (opt) => (
-                <Radio
-                  key={opt.label}
-                  value={opt.label}
-                  className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  <span
-                    aria-hidden
-                    className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
-                  />
-                  <span className="block text-sm/6 font-normal text-gray-900">
-                    {opt.label}
-                  </span>
-                </Radio>
-              )
-            )}
+            {[
+              { id: 'horni', label: 'Horní' },
+              { id: 'stredni', label: 'Střední' },
+              { id: 'dolni', label: 'Dolní' },
+            ].map((opt) => (
+              <Radio
+                key={opt.id}
+                value={opt.id}
+                className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                <span
+                  aria-hidden
+                  className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
+                />
+                <span className="block text-sm/6 font-normal text-gray-900">
+                  {opt.label}
+                </span>
+              </Radio>
+            ))}
           </RadioGroup>
         </Field>
       </div>
@@ -248,7 +255,11 @@ export default function RektumSection(props: RektumSectionProps) {
       <div className="sm:col-span-3">
         <Field>
           <Label className="text-sm/6 font-medium text-gray-900">Režim</Label>
-          <RadioGroup onChange={onRezimChange} className="mt-6 space-y-2">
+          <RadioGroup
+            value={rezim}
+            onChange={onRezimChange}
+            className="mt-6 space-y-2"
+          >
             {[
               {
                 id: '1',
@@ -548,13 +559,13 @@ export default function RektumSection(props: RektumSectionProps) {
             className="mt-6 space-y-2"
           >
             {[
-              { label: 'Dle standardu' },
-              { label: 'Combifix' },
-              { label: 'jiné' },
+              { id: 'dle-standardu', label: 'Dle standardu' },
+              { id: 'combifix', label: 'Combifix' },
+              { id: 'jiné', label: 'Jiné' },
             ].map((opt) => (
               <Radio
-                key={opt.label}
-                value={opt.label}
+                key={opt.id}
+                value={opt.id}
                 className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 <span
@@ -564,7 +575,7 @@ export default function RektumSection(props: RektumSectionProps) {
                 <span className="block text-sm/6 font-normal text-gray-900">
                   {opt.label}
                 </span>
-                {opt.label === 'jiné' ? (
+                {opt.id === 'jiné' ? (
                   <>
                     <Input
                       id="fixace-jine"
