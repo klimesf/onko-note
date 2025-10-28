@@ -1,9 +1,9 @@
 import { Dialog, DialogPanel, Field, Label, Select } from '@headlessui/react';
 import { useState, type FormEvent } from 'react';
-import RektumSection from './RaktumSection';
 import RektumResults from './RektumResults';
-import SarkomSection from './SarkomSection';
+import RektumSection from './RektumSection';
 import SarkomResults from './SarkomResults';
+import SarkomSection from './SarkomSection';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
