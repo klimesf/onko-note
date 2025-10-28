@@ -7,19 +7,24 @@ import {
 } from '@headlessui/react';
 import { useState, type FormEvent } from 'react';
 import SarkomSection from './SarkomSection';
+import RektumSection from './RaktumSection';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
   const [osetrujici, setOsetrujici] = useState<string>('');
   const [diagnoza, setDiagnoza] = useState<string>('');
   const [histologie, setHistologie] = useState<string>('');
+  const [histologieJine, setHistologieJine] = useState<string>('');
   const [lokalizace, setLokalizace] = useState<string>('');
   const [lokalizaceJine, setLokalizaceJine] = useState<string>('');
   const [chemoterapie, setChemoterapie] = useState<string>('');
   const [chemoterapieJine, setChemoterapieJine] = useState<string>('');
+  const [odstup, setOdstup] = useState<string>('');
+  const [odstupJine, setOdstupJine] = useState<string>('');
   const [fixace, setFixace] = useState<string>('');
   const [fixaceJine, setFixaceJine] = useState<string>('');
   const [poloha, setPoloha] = useState<string>('');
+  const [polohaJine, setPolohaJine] = useState<string>('');
   const [bolus, setBolus] = useState<string>('');
   const [zamer, setZamer] = useState<string>('');
   const [frakcionace, setFrakcionace] = useState<string>('');
@@ -116,6 +121,7 @@ function RadioterapieForm() {
                   <option value="prostata">Prostata</option>
                   <option value="mamma">Mamma</option>
                   <option value="cns">CNS</option>
+                  <option value="rektum">Rektum</option>
                 </Select>
               </Field>
             </div>
@@ -142,6 +148,42 @@ function RadioterapieForm() {
                 setPoloha={setPoloha}
                 bolus={bolus}
                 setBolus={setBolus}
+                zamer={zamer}
+                setZamer={setZamer}
+                frakcionace={frakcionace}
+                setFrakcionace={setFrakcionace}
+                frakcionaceJine={frakcionaceJine}
+                setFrakcionaceJine={setFrakcionaceJine}
+                odbery={odbery}
+                setOdbery={setOdbery}
+              />
+            ) : (
+              <></>
+            )}
+            {diagnoza === 'rektum' ? (
+              <RektumSection
+                histologie={histologie}
+                setHistologie={setHistologie}
+                histologieJine={histologieJine}
+                setHistologieJine={setHistologieJine}
+                lokalizace={lokalizace}
+                setLokalizace={setLokalizace}
+                chemoterapie={chemoterapie}
+                setChemoterapie={setChemoterapie}
+                chemoterapieJine={chemoterapieJine}
+                setChemoterapieJine={setChemoterapieJine}
+                odstup={odstup}
+                setOdstup={setOdstup}
+                odstupJine={odstupJine}
+                setOdstupJine={setOdstupJine}
+                fixace={fixace}
+                setFixace={setFixace}
+                fixaceJine={fixaceJine}
+                setFixaceJine={setFixaceJine}
+                poloha={poloha}
+                setPoloha={setPoloha}
+                polohaJine={polohaJine}
+                setPolohaJine={setPolohaJine}
                 zamer={zamer}
                 setZamer={setZamer}
                 frakcionace={frakcionace}
