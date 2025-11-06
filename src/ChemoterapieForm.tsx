@@ -25,6 +25,7 @@ function ChemoterapieForm() {
     torecan: false,
     novetron: false,
     granisetron: false,
+    akynzeo: false,
   });
   const [gpCheck, setGpCheck] = useState<string>('');
   const [restaging, setRestaging] = useState<string>('');
@@ -469,6 +470,7 @@ function ChemoterapieForm() {
                     { id: 'torecan', label: 'Torecan' },
                     { id: 'novetron', label: 'Novetron' },
                     { id: 'granisetron', label: 'Granisetron' },
+                    { id: 'akynzeo', label: 'Akynzeo' },
                   ].map((opt) => (
                     <div key={opt.id} className="flex gap-3">
                       <div className="flex h-6 shrink-0 items-center">
@@ -668,7 +670,8 @@ function ChemoterapieForm() {
                   {antiemetika['degan'] ||
                   antiemetika['torecan'] ||
                   antiemetika['novetron'] ||
-                  antiemetika['granisetron'] ? (
+                  antiemetika['granisetron'] ||
+                  antiemetika['akynzeo'] ? (
                     <>
                       <p className="text-md">
                         <span className="underline">Při nevolnosti:</span>
@@ -707,6 +710,15 @@ function ChemoterapieForm() {
                           <>
                             <li className="text-md">
                               Granisetron 1mg tbl. max 2/den
+                            </li>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                        {antiemetika['akynzeo'] ? (
+                          <>
+                            <li className="text-md">
+                              rp.: Akynzeo k příští aplikaci
                             </li>
                           </>
                         ) : (
