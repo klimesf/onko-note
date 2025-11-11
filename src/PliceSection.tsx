@@ -1,5 +1,6 @@
 import { Field, Input, Label, Radio, RadioGroup } from '@headlessui/react';
 import type { Dispatch, SetStateAction } from 'react';
+import RadioInput from './inputs/RadioInput';
 
 type PliceSectionProps = {
   histologie: string;
@@ -87,50 +88,18 @@ export default function PliceSection(props: PliceSectionProps) {
   return (
     <>
       <div className="sm:col-span-2">
-        <Field>
-          <Label className="text-sm/6 font-medium text-gray-900">
-            Histologie
-          </Label>
-          <RadioGroup
-            value={histologie}
-            onChange={setHistologie}
-            className="mt-6 space-y-2"
-          >
-            {[
-              { id: 'nemalobuněčný karcinom', label: 'Nemalobuněčný karcinom' },
-              { id: 'malobuněčný karcinom', label: 'Malobuněčný karcinom' },
-              { id: 'jine', label: 'Jiné' },
-            ].map((opt) => (
-              <Radio
-                key={opt.id}
-                value={opt.id}
-                className="group flex items-center gap-x-3 rounded-md border border-gray-300 bg-white p-2 text-gray-900 data-[checked]:border-indigo-600 data-[checked]:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                <span
-                  aria-hidden
-                  className="size-4 rounded-full border border-gray-300 bg-white group-data-[checked]:border-indigo-600 group-data-[checked]:bg-indigo-600"
-                />
-                <span className="block text-sm/6 font-normal text-gray-900">
-                  {opt.label}
-                </span>
-                {opt.id === 'jine' ? (
-                  <>
-                    <Input
-                      id="histologie-jine"
-                      name="histologie-jine"
-                      type="text"
-                      value={histologieJine}
-                      onChange={(e) => setHistologieJine(e.target.value)}
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-100 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                    />
-                  </>
-                ) : (
-                  <></>
-                )}
-              </Radio>
-            ))}
-          </RadioGroup>
-        </Field>
+        <RadioInput
+          label="Histologie"
+          options={[
+            { value: 'nemalobuněčný karcinom', label: 'Nemalobuněčný karcinom', isOther: false },
+            { value: 'malobuněčný karcinom', label: 'Malobuněčný karcinom', isOther: false },
+            { value: 'jine', label: 'Jiné', isOther: true },
+          ]}
+          value={histologie}
+          setValue={setHistologie}
+          otherValue={histologieJine}
+          setOtherValue={setHistologieJine}
+        ></RadioInput>
       </div>
 
       <div className="sm:col-span-4"></div>
