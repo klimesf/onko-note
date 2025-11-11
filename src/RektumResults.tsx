@@ -140,6 +140,11 @@ function RektumResults({
     <>
       <div className="flex flex-col gap-y-2">
         <p className="text-md">
+          <strong>Provedená vyšetření:</strong>
+        </p>
+      </div>
+      <div className="flex flex-col gap-y-2">
+        <p className="text-md">
           <strong>Diagnostický souhrn:</strong>
         </p>
       </div>

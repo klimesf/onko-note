@@ -1,5 +1,7 @@
 import { Dialog, DialogPanel, Field, Label, Select } from '@headlessui/react';
 import { useState, type FormEvent } from 'react';
+import PliceResults from './PliceResults';
+import PliceSection from './PliceSection';
 import RektumResults from './RektumResults';
 import RektumSection from './RektumSection';
 import SarkomResults from './SarkomResults';
@@ -12,6 +14,20 @@ function RadioterapieForm() {
   const [histologie, setHistologie] = useState<string>('');
   const [histologieJine, setHistologieJine] = useState<string>('');
   const [lokalizace, setLokalizace] = useState<string>('');
+  const [kardiostimulator, setKardiostimulator] = useState<string>('');
+  const [kardiostimulatorDependentni, setKardiostimulatorDependentni] =
+    useState<string>('');
+  const [
+    kardiostimulatorKontrolaZajistena,
+    setKardiostimulatorKontrolaZajistena,
+  ] = useState<string>('');
+  const [konkomitantniChemoterapie, setKonkomitantniChemoterapie] =
+    useState<string>('');
+  const [konkomitantniChemoterapieJine, setKonkomitantniChemoterapieJine] =
+    useState<string>('');
+  const [vysaditCilenouLecbu, setVysaditCilenouLecbu] = useState<string>('');
+  const [fuzniPetCt, setFuzniPetCt] = useState<string>('');
+  const [fuzniMri, setFuzniMri] = useState<string>('');
   const [lokalizaceJine, setLokalizaceJine] = useState<string>('');
   const [chemoterapie, setChemoterapie] = useState<string>('');
   const [chemoterapieJine, setChemoterapieJine] = useState<string>('');
@@ -197,6 +213,56 @@ function RadioterapieForm() {
             ) : (
               <></>
             )}
+            {diagnoza === 'plice' ? (
+              <PliceSection
+                histologie={histologie}
+                setHistologie={setHistologie}
+                histologieJine={histologieJine}
+                setHistologieJine={setHistologieJine}
+                lokalizace={lokalizace}
+                setLokalizace={setLokalizace}
+                kardiostimulator={kardiostimulator}
+                setKardiostimulator={setKardiostimulator}
+                kardiostimulatorDependentni={kardiostimulatorDependentni}
+                setKardiostimulatorDependentni={setKardiostimulatorDependentni}
+                kardiostimulatorKontrolaZajistena={
+                  kardiostimulatorKontrolaZajistena
+                }
+                setKardiostimulatorKontrolaZajistena={
+                  setKardiostimulatorKontrolaZajistena
+                }
+                konkomitantniChemoterapie={konkomitantniChemoterapie}
+                setKonkomitantniChemoterapie={setKonkomitantniChemoterapie}
+                konkomitantniChemoterapieJine={konkomitantniChemoterapieJine}
+                setKonkomitantniChemoterapieJine={
+                  setKonkomitantniChemoterapieJine
+                }
+                vysaditCilenouLecbu={vysaditCilenouLecbu}
+                setVysaditCilenouLecbu={setVysaditCilenouLecbu}
+                fuzniPetCt={fuzniPetCt}
+                setFuzniPetCt={setFuzniPetCt}
+                fuzniMri={fuzniMri}
+                setFuzniMri={setFuzniMri}
+                fixace={fixace}
+                setFixace={setFixace}
+                fixaceJine={fixaceJine}
+                setFixaceJine={setFixaceJine}
+                poloha={poloha}
+                setPoloha={setPoloha}
+                polohaJine={polohaJine}
+                setPolohaJine={setPolohaJine}
+                zamer={zamer}
+                setZamer={setZamer}
+                frakcionace={frakcionace}
+                setFrakcionace={setFrakcionace}
+                frakcionaceJine={frakcionaceJine}
+                setFrakcionaceJine={setFrakcionaceJine}
+                odbery={odbery}
+                setOdbery={setOdbery}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
@@ -243,11 +309,6 @@ function RadioterapieForm() {
                     NO: <br />
                   </p>
                 </div>
-                <div className="flex flex-col gap-y-2">
-                  <p className="text-md">
-                    <strong>Provedená vyšetření:</strong>
-                  </p>
-                </div>
                 {diagnoza === 'sarkom' ? (
                   <SarkomResults
                     gender={gender}
@@ -286,6 +347,35 @@ function RadioterapieForm() {
                     odbery={odbery}
                     rezim={rezim}
                     odstup={odstup}
+                  />
+                ) : (
+                  <></>
+                )}
+                {diagnoza === 'plice' ? (
+                  <PliceResults
+                    gender={gender}
+                    zamer={zamer}
+                    histologie={histologie}
+                    histologieJine={histologieJine}
+                    lokalizace={lokalizace}
+                    frakcionace={frakcionace}
+                    frakcionaceJine={frakcionaceJine}
+                    poloha={poloha}
+                    polohaJine={polohaJine}
+                    fixace={fixace}
+                    fixaceJine={fixaceJine}
+                    konkomitantniChemoterapie={konkomitantniChemoterapie}
+                    konkomitantniChemoterapieJine={
+                      konkomitantniChemoterapieJine
+                    }
+                    odbery={odbery}
+                    vysaditCilenouLecbu={vysaditCilenouLecbu}
+                    kardiostimulator={kardiostimulator}
+                    kardiostimulatorKontrolaZajistena={
+                      kardiostimulatorKontrolaZajistena
+                    }
+                    fuzniPetCt={fuzniPetCt}
+                    fuzniMri={fuzniMri}
                   />
                 ) : (
                   <></>
