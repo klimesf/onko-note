@@ -114,11 +114,13 @@ function RadioterapieForm() {
                     Vyberte jednu z možností
                   </option>
                   <option value="sarkom">Sarkom</option>
-                  <option value="orl">ORL</option>
-                  <option value="prostata">Prostata</option>
-                  <option value="mamma">Mamma</option>
-                  <option value="cns">CNS</option>
                   <option value="rektum">Rektum</option>
+                  <option value="plice">Plíce</option>
+                  {/*<option value="univerzal">Univerzál</option>
+                  <option value="mammae">Mammae</option>
+                  <option value="orl">ORL</option>
+                  <option value="gynekologicke-nadory">Gynekologické nádory</option>
+                  <option value="anus">Anus</option>*/}
                 </Select>
               </Field>
             </div>
