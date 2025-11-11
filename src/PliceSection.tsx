@@ -91,8 +91,16 @@ export default function PliceSection(props: PliceSectionProps) {
         <RadioInput
           label="Histologie"
           options={[
-            { value: 'nemalobuněčný karcinom', label: 'Nemalobuněčný karcinom', isOther: false },
-            { value: 'malobuněčný karcinom', label: 'Malobuněčný karcinom', isOther: false },
+            {
+              value: 'nemalobuněčný karcinom',
+              label: 'Nemalobuněčný karcinom',
+              isOther: false,
+            },
+            {
+              value: 'malobuněčný karcinom',
+              label: 'Malobuněčný karcinom',
+              isOther: false,
+            },
             { value: 'jine', label: 'Jiné', isOther: true },
           ]}
           value={histologie}

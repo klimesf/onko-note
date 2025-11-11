@@ -6,6 +6,8 @@ import RektumResults from './RektumResults';
 import RektumSection from './RektumSection';
 import SarkomResults from './SarkomResults';
 import SarkomSection from './SarkomSection';
+import UniverzalResults from './UniverzalResults';
+import UniverzalSection from './UniverzalSection';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
@@ -132,8 +134,8 @@ function RadioterapieForm() {
                   <option value="sarkom">Sarkom</option>
                   <option value="rektum">Rektum</option>
                   <option value="plice">Plíce</option>
-                  {/*<option value="univerzal">Univerzál</option>
-                  <option value="mammae">Mammae</option>
+                  <option value="univerzal">Univerzál</option>
+                  {/*<option value="mammae">Mammae</option>
                   <option value="orl">ORL</option>
                   <option value="gynekologicke-nadory">Gynekologické nádory</option>
                   <option value="anus">Anus</option>*/}
@@ -263,6 +265,24 @@ function RadioterapieForm() {
             ) : (
               <></>
             )}
+            {diagnoza === 'univerzal' ? (
+              <UniverzalSection
+                zamer={zamer}
+                setZamer={setZamer}
+                fixace={fixace}
+                setFixace={setFixace}
+                fixaceJine={fixaceJine}
+                setFixaceJine={setFixaceJine}
+                poloha={poloha}
+                setPoloha={setPoloha}
+                polohaJine={polohaJine}
+                setPolohaJine={setPolohaJine}
+                odbery={odbery}
+                setOdbery={setOdbery}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
@@ -376,6 +396,19 @@ function RadioterapieForm() {
                     }
                     fuzniPetCt={fuzniPetCt}
                     fuzniMri={fuzniMri}
+                  />
+                ) : (
+                  <></>
+                )}
+                {diagnoza === 'univerzal' ? (
+                  <UniverzalResults
+                    gender={gender}
+                    zamer={zamer}
+                    poloha={poloha}
+                    polohaJine={polohaJine}
+                    fixace={fixace}
+                    fixaceJine={fixaceJine}
+                    odbery={odbery}
                   />
                 ) : (
                   <></>
