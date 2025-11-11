@@ -149,9 +149,7 @@ function PliceResults({
           )}
           {lokalizace === 'HA-PCI' ? (
             <>
-              <strong>
-                Indikována HA-PCI pro {histologieText} plic
-              </strong>
+              <strong>Indikována HA-PCI pro {histologieText} plic</strong>
               <br />
               Cílový objem: kranium
             </>
@@ -193,8 +191,9 @@ function PliceResults({
             </>
           )}
           <br />
-          Termín 1. frakce radioterapie bude pacientce oznámen při plánovacím
-          CT.
+          Termín 1. frakce radioterapie bude{' '}
+          {gender === 'zena' ? 'pacientce' : 'pacientovi'} oznámen při
+          plánovacím CT.
           <br />
           Kontroly v průběhu radioterapie 1xtýdně.
           <br />
