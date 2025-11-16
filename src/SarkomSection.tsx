@@ -66,11 +66,27 @@ export default function SarkomSection(props: SarkomSectionProps) {
         <RadioInput
           label="Histologie"
           options={[
-            { value: 'Myxoidní liposarkom', label: 'Myxoidní liposarkom', isOther: false },
+            {
+              value: 'Myxoidní liposarkom',
+              label: 'Myxoidní liposarkom',
+              isOther: false,
+            },
             { value: 'Liposarkom', label: 'Liposarkom', isOther: false },
-            { value: 'Myxofibrosarkom', label: 'Myxofibrosarkom', isOther: false },
-            { value: 'Rhabdomyosarkom', label: 'Rhabdomyosarkom', isOther: false },
-            { value: 'Ewingův sarkom', label: 'Ewingův sarkom', isOther: false },
+            {
+              value: 'Myxofibrosarkom',
+              label: 'Myxofibrosarkom',
+              isOther: false,
+            },
+            {
+              value: 'Rhabdomyosarkom',
+              label: 'Rhabdomyosarkom',
+              isOther: false,
+            },
+            {
+              value: 'Ewingův sarkom',
+              label: 'Ewingův sarkom',
+              isOther: false,
+            },
             { value: 'UPS', label: 'UPS', isOther: false },
             { value: 'Leiomyosarkom', label: 'Leiomyosarkom', isOther: false },
           ]}
@@ -85,9 +101,21 @@ export default function SarkomSection(props: SarkomSectionProps) {
         <RadioInput
           label="Lokalizace"
           options={[
-            { value: 'horní končetina', label: 'horní končetina', isOther: false },
-            { value: 'dolní končetina', label: 'dolní končetina', isOther: false },
-            { value: 'retroperitoneum', label: 'retroperitoneum', isOther: false },
+            {
+              value: 'horní končetina',
+              label: 'horní končetina',
+              isOther: false,
+            },
+            {
+              value: 'dolní končetina',
+              label: 'dolní končetina',
+              isOther: false,
+            },
+            {
+              value: 'retroperitoneum',
+              label: 'retroperitoneum',
+              isOther: false,
+            },
             { value: 'jiné', label: 'jiné', isOther: true },
           ]}
           value={lokalizace}
@@ -120,7 +148,11 @@ export default function SarkomSection(props: SarkomSectionProps) {
         <RadioInput
           label="Fixace"
           options={[
-            { value: 'Vakuová matrace', label: 'Vakuová matrace', isOther: false },
+            {
+              value: 'Vakuová matrace',
+              label: 'Vakuová matrace',
+              isOther: false,
+            },
             { value: 'Combifix', label: 'Combifix', isOther: false },
             { value: 'jiné', label: 'jiné', isOther: true },
           ]}

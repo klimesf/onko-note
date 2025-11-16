@@ -233,10 +233,26 @@ export default function RektumSection(props: RektumSectionProps) {
               label: 'Totální neoadjuvance - chemoradioterapie + 9x FOLFOX ',
               isOther: false,
             },
-            { value: '8', label: 'Adjuvantní chemoradioterapie', isOther: false },
-            { value: '9', label: 'Adjuvantní chemoradioterapie SIB', isOther: false },
-            { value: '10', label: 'Radikální  chemoradioterapie', isOther: false },
-            { value: '11', label: 'Radikální samostatná radioterapie', isOther: false },
+            {
+              value: '8',
+              label: 'Adjuvantní chemoradioterapie',
+              isOther: false,
+            },
+            {
+              value: '9',
+              label: 'Adjuvantní chemoradioterapie SIB',
+              isOther: false,
+            },
+            {
+              value: '10',
+              label: 'Radikální  chemoradioterapie',
+              isOther: false,
+            },
+            {
+              value: '11',
+              label: 'Radikální samostatná radioterapie',
+              isOther: false,
+            },
             { value: '12', label: 'Paliativní radioterapie', isOther: false },
             { value: '13', label: 'Jiná možnost', isOther: false },
           ]}
@@ -320,9 +336,21 @@ export default function RektumSection(props: RektumSectionProps) {
                 'Konkomitantní chemoterapie Kapecitabin 825mg/m2 2xd + FOLFOX 9x po ukončení radioterapie',
               isOther: false,
             },
-            { value: 'capox', label: 'CAPOX 6x po ukončení radioterapie', isOther: false },
-            { value: 'folfox', label: 'FOLFOX 9x po ukončení radioterapie', isOther: false },
-            { value: 'bez-chemoterapie', label: 'Bez chemoterapie', isOther: false },
+            {
+              value: 'capox',
+              label: 'CAPOX 6x po ukončení radioterapie',
+              isOther: false,
+            },
+            {
+              value: 'folfox',
+              label: 'FOLFOX 9x po ukončení radioterapie',
+              isOther: false,
+            },
+            {
+              value: 'bez-chemoterapie',
+              label: 'Bez chemoterapie',
+              isOther: false,
+            },
             { value: 'jine', label: 'Jiné', isOther: true },
           ]}
           value={chemoterapie}
@@ -338,7 +366,11 @@ export default function RektumSection(props: RektumSectionProps) {
         <RadioInput
           label="Odstup operace"
           options={[
-            { value: 'standardni', label: 'Standardní (6-8 týdnů)', isOther: false },
+            {
+              value: 'standardni',
+              label: 'Standardní (6-8 týdnů)',
+              isOther: false,
+            },
             { value: 'kratky', label: 'Krátký (2-4 týdny)', isOther: false },
             { value: 'bez', label: 'Bez operace', isOther: false },
             { value: 'jine', label: 'Jiné', isOther: true },

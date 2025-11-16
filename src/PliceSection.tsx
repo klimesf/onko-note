@@ -208,10 +208,26 @@ export default function PliceSection(props: PliceSectionProps) {
           options={[
             { value: '66Gy (33x2Gy)', label: '66Gy (33x2Gy)', isOther: false },
             { value: '70Gy (35x2Gy)', label: '70Gy (35x2Gy)', isOther: false },
-            { value: '25Gy (10x2,5Gy)', label: '25Gy (10x2,5Gy)', isOther: false },
-            { value: '55Gy (20x2,75Gy)', label: '55Gy (20x2,75Gy)', isOther: false },
-            { value: '55Gy (22x2,5Gy)', label: '55Gy (22x2,5Gy)', isOther: false },
-            { value: '54Gy (30x1,8Gy)', label: '54Gy (30x1,8Gy)', isOther: false },
+            {
+              value: '25Gy (10x2,5Gy)',
+              label: '25Gy (10x2,5Gy)',
+              isOther: false,
+            },
+            {
+              value: '55Gy (20x2,75Gy)',
+              label: '55Gy (20x2,75Gy)',
+              isOther: false,
+            },
+            {
+              value: '55Gy (22x2,5Gy)',
+              label: '55Gy (22x2,5Gy)',
+              isOther: false,
+            },
+            {
+              value: '54Gy (30x1,8Gy)',
+              label: '54Gy (30x1,8Gy)',
+              isOther: false,
+            },
             { value: '39Gy (13x3Gy)', label: '39Gy (13x3Gy)', isOther: false },
             { value: '30Gy (10x3Gy)', label: '30Gy (10x3Gy)', isOther: false },
             { value: 'jiné', label: 'jiné', isOther: true },
@@ -229,10 +245,26 @@ export default function PliceSection(props: PliceSectionProps) {
         <RadioInput
           label="Konkomitantní chemoterapie"
           options={[
-            { value: 'cDDP / etoposid', label: 'cDDP / etoposid', isOther: false },
-            { value: 'CBDCA / etoposid', label: 'CBDCA / etoposid', isOther: false },
-            { value: 'cDDP / vinorelbin', label: 'cDDP / vinorelbin', isOther: false },
-            { value: 'Bez chemoterapie', label: 'Bez chemoterapie', isOther: false },
+            {
+              value: 'cDDP / etoposid',
+              label: 'cDDP / etoposid',
+              isOther: false,
+            },
+            {
+              value: 'CBDCA / etoposid',
+              label: 'CBDCA / etoposid',
+              isOther: false,
+            },
+            {
+              value: 'cDDP / vinorelbin',
+              label: 'cDDP / vinorelbin',
+              isOther: false,
+            },
+            {
+              value: 'Bez chemoterapie',
+              label: 'Bez chemoterapie',
+              isOther: false,
+            },
             { value: 'jiné', label: 'jiné', isOther: true },
           ]}
           value={konkomitantniChemoterapie}
