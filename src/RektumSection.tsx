@@ -72,7 +72,7 @@ export default function RektumSection(props: RektumSectionProps) {
     setRezim,
   } = props;
 
-  const onRezimChange = (rezim: string) => {
+  const onRezimChange = (rezim: SetStateAction<string>) => {
     setRezim(rezim);
     switch (rezim) {
       case '1':
