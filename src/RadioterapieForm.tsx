@@ -8,6 +8,8 @@ import SarkomResults from './SarkomResults';
 import SarkomSection from './SarkomSection';
 import UniverzalResults from './UniverzalResults';
 import UniverzalSection from './UniverzalSection';
+import MammaeSection from './MammaeSection';
+import MammaeResults from './MammaeResults';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
@@ -45,6 +47,11 @@ function RadioterapieForm() {
   const [frakcionaceJine, setFrakcionaceJine] = useState<string>('');
   const [odbery, setOdbery] = useState<string>('');
   const [rezim, setRezim] = useState<string>('');
+  const [boost, setBoost] = useState<string>('');
+  const [boostJine, setBoostJine] = useState<string>('');
+  const [dibh, setDibh] = useState<string>('');
+  const [rozsah, setRozsah] = useState<string>('');
+  const [rozsahJine, setRozsahJine] = useState<string>('');
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -135,8 +142,8 @@ function RadioterapieForm() {
                   <option value="rektum">Rektum</option>
                   <option value="plice">Plíce</option>
                   <option value="univerzal">Univerzál</option>
-                  {/*<option value="mammae">Mammae</option>
-                  <option value="orl">ORL</option>
+                  <option value="mammae">Mammae</option>
+                  {/*<option value="orl">ORL</option>
                   <option value="gynekologicke-nadory">Gynekologické nádory</option>
                   <option value="anus">Anus</option>*/}
                 </Select>
@@ -283,6 +290,54 @@ function RadioterapieForm() {
             ) : (
               <></>
             )}
+            {diagnoza === 'mammae' ? (
+              <MammaeSection
+                histologie={histologie}
+                setHistologie={setHistologie}
+                histologieJine={histologieJine}
+                setHistologieJine={setHistologieJine}
+                lokalizace={lokalizace}
+                setLokalizace={setLokalizace}
+                kardiostimulator={kardiostimulator}
+                setKardiostimulator={setKardiostimulator}
+                kardiostimulatorDependentni={kardiostimulatorDependentni}
+                setKardiostimulatorDependentni={setKardiostimulatorDependentni}
+                kardiostimulatorKontrolaZajistena={
+                  kardiostimulatorKontrolaZajistena
+                }
+                setKardiostimulatorKontrolaZajistena={
+                  setKardiostimulatorKontrolaZajistena
+                }
+                fixace={fixace}
+                setFixace={setFixace}
+                fixaceJine={fixaceJine}
+                setFixaceJine={setFixaceJine}
+                poloha={poloha}
+                setPoloha={setPoloha}
+                polohaJine={polohaJine}
+                setPolohaJine={setPolohaJine}
+                zamer={zamer}
+                setZamer={setZamer}
+                frakcionace={frakcionace}
+                setFrakcionace={setFrakcionace}
+                frakcionaceJine={frakcionaceJine}
+                setFrakcionaceJine={setFrakcionaceJine}
+                odbery={odbery}
+                setOdbery={setOdbery}
+                boost={boost}
+                setBoost={setBoost}
+                boostJine={boostJine}
+                setBoostJine={setBoostJine}
+                dibh={dibh}
+                setDibh={setDibh}
+                rozsah={rozsah}
+                setRozsah={setRozsah}
+                rozsahJine={rozsahJine}
+                setRozsahJine={setRozsahJine}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
@@ -409,6 +464,33 @@ function RadioterapieForm() {
                     fixace={fixace}
                     fixaceJine={fixaceJine}
                     odbery={odbery}
+                  />
+                ) : (
+                  <></>
+                )}
+                {diagnoza === 'mammae' ? (
+                  <MammaeResults
+                    gender={gender}
+                    zamer={zamer}
+                    histologie={histologie}
+                    histologieJine={histologieJine}
+                    lokalizace={lokalizace}
+                    frakcionace={frakcionace}
+                    frakcionaceJine={frakcionaceJine}
+                    poloha={poloha}
+                    polohaJine={polohaJine}
+                    fixace={fixace}
+                    fixaceJine={fixaceJine}
+                    odbery={odbery}
+                    kardiostimulator={kardiostimulator}
+                    kardiostimulatorKontrolaZajistena={
+                      kardiostimulatorKontrolaZajistena
+                    }
+                    boost={boost}
+                    boostJine={boostJine}
+                    dibh={dibh}
+                    rozsah={rozsah}
+                    rozsahJine={rozsahJine}
                   />
                 ) : (
                   <></>
