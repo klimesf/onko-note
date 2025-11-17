@@ -11,6 +11,7 @@ import UniverzalSection from './UniverzalSection';
 import MammaeSection from './MammaeSection';
 import MammaeResults from './MammaeResults';
 import OrlSection from './OrlSection';
+import GynekologickeNadorySection from './GynekologickeNadorySection';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
@@ -36,6 +37,8 @@ function RadioterapieForm() {
   const [lokalizaceJine, setLokalizaceJine] = useState<string>('');
   const [chemoterapie, setChemoterapie] = useState<string>('');
   const [chemoterapieJine, setChemoterapieJine] = useState<string>('');
+  const [imunoterapie, setImunoterapie] = useState<string>('');
+  const [imunoterapieJine, setImunoterapieJine] = useState<string>('');
   const [odstup, setOdstup] = useState<string>('');
   const [odstupJine, setOdstupJine] = useState<string>('');
   const [fixace, setFixace] = useState<string>('');
@@ -53,6 +56,7 @@ function RadioterapieForm() {
   const [dibh, setDibh] = useState<string>('');
   const [rozsah, setRozsah] = useState<string>('');
   const [rozsahJine, setRozsahJine] = useState<string>('');
+  const [brachyterapie, setBrachyterapie] = useState<string>('');
   const [cilovyObjem, setCilovyObjem] = useState<string>('');
   const [cilovyObjemJine, setCilovyObjemJine] = useState<string>('');
   const [fixacePoloha, setFixacePoloha] = useState<string>('');
@@ -153,8 +157,10 @@ function RadioterapieForm() {
                   <option value="univerzal">Univerzál</option>
                   <option value="mammae">Mammae</option>
                   <option value="orl">ORL</option>
-                  {/*<option value="gynekologicke-nadory">Gynekologické nádory</option>
-                  <option value="anus">Anus</option>*/}
+                  <option value="gynekologicke-nadory">
+                    Gynekologické nádory
+                  </option>
+                  {/*<option value="anus">Anus</option>*/}
                 </Select>
               </Field>
             </div>
@@ -379,6 +385,38 @@ function RadioterapieForm() {
                 setPotrebaDoplneniPETCTMR={setPotrebaDoplneniPETCTMR}
                 potrebaZavedeniPICC={potrebaZavedeniPICC}
                 setPotrebaZavedeniPICC={setPotrebaZavedeniPICC}
+              />
+            ) : (
+              <></>
+            )}
+            {diagnoza === 'gynekologicke-nadory' ? (
+              <GynekologickeNadorySection
+                zamer={zamer}
+                setZamer={setZamer}
+                fixace={fixace}
+                setFixace={setFixace}
+                fixaceJine={fixaceJine}
+                setFixaceJine={setFixaceJine}
+                poloha={poloha}
+                setPoloha={setPoloha}
+                polohaJine={polohaJine}
+                setPolohaJine={setPolohaJine}
+                odbery={odbery}
+                setOdbery={setOdbery}
+                chemoterapie={chemoterapie}
+                setChemoterapie={setChemoterapie}
+                chemoterapieJine={chemoterapieJine}
+                setChemoterapieJine={setChemoterapieJine}
+                imunoterapie={imunoterapie}
+                setImunoterapie={setImunoterapie}
+                imunoterapieJine={imunoterapieJine}
+                setImunoterapieJine={setImunoterapieJine}
+                frakcionace={frakcionace}
+                setFrakcionace={setFrakcionace}
+                frakcionaceJine={frakcionaceJine}
+                setFrakcionaceJine={setFrakcionaceJine}
+                brachyterapie={brachyterapie}
+                setBrachyterapie={setBrachyterapie}
               />
             ) : (
               <></>
