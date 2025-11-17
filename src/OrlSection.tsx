@@ -75,7 +75,11 @@ export default function OrlSection(props: OrlSectionProps) {
           label="Histologie"
           options={[
             { value: 'ca orofaryngu', label: 'Ca orofaryngu', isOther: false },
-            { value: 'ca nasofaryngu', label: 'Ca nasofaryngu', isOther: false },
+            {
+              value: 'ca nasofaryngu',
+              label: 'Ca nasofaryngu',
+              isOther: false,
+            },
             { value: 'ca laryngu', label: 'Ca laryngu', isOther: false },
             { value: 'ca tonsilly', label: 'Ca tonsilly', isOther: false },
             {
@@ -150,7 +154,11 @@ export default function OrlSection(props: OrlSectionProps) {
         <RadioInput
           label="Cílový objem"
           options={[
-            { value: 'primární tumor', label: 'Primární tumor', isOther: false },
+            {
+              value: 'primární tumor',
+              label: 'Primární tumor',
+              isOther: false,
+            },
             {
               value:
                 'primární tumor a metastatické LU / lymfatika elektivně ipsilaterálně',
@@ -165,7 +173,11 @@ export default function OrlSection(props: OrlSectionProps) {
                 'Primární tumor a metastatické LU / lymfatika elektivně bilaterálně',
               isOther: false,
             },
-            { value: 'lůžko po operaci', label: 'Lůžko po operaci', isOther: false },
+            {
+              value: 'lůžko po operaci',
+              label: 'Lůžko po operaci',
+              isOther: false,
+            },
             {
               value: 'lůžko po operaci / lymfatika elektivně ipsilaterálně',
               label: 'Lůžko po operaci / lymfatika elektivně ipsilaterálně',
@@ -216,8 +228,10 @@ export default function OrlSection(props: OrlSectionProps) {
               isOther: false,
             },
             {
-              value: 'PTV High 60 Gy (30fr x 2 Gy) / PTV Low 54 Gy (30fr x 1,8 Gy)',
-              label: 'PTV High 60 Gy (30fr x 2 Gy) / PTV Low 54 Gy (30fr x 1,8 Gy)',
+              value:
+                'PTV High 60 Gy (30fr x 2 Gy) / PTV Low 54 Gy (30fr x 1,8 Gy)',
+              label:
+                'PTV High 60 Gy (30fr x 2 Gy) / PTV Low 54 Gy (30fr x 1,8 Gy)',
               isOther: false,
             },
             {
@@ -227,8 +241,16 @@ export default function OrlSection(props: OrlSectionProps) {
                 'PTV High 64,5 Gy (30fr x 2,15 Gy) / PTV Mid 60 Gy (30fr x 2 Gy) / PTV Low 54 Gy (30fr x 1,8 Gy)',
               isOther: false,
             },
-            { value: '30 Gy (10fr x 3 Gy)', label: '30 Gy (10fr x 3 Gy)', isOther: false },
-            { value: '45 Gy (15fr x 2,5 Gy)', label: '45 Gy (15fr x 2,5 Gy)', isOther: false },
+            {
+              value: '30 Gy (10fr x 3 Gy)',
+              label: '30 Gy (10fr x 3 Gy)',
+              isOther: false,
+            },
+            {
+              value: '45 Gy (15fr x 2,5 Gy)',
+              label: '45 Gy (15fr x 2,5 Gy)',
+              isOther: false,
+            },
             { value: 'jine', label: 'Jiné', isOther: true },
           ]}
           value={frakcionace}
@@ -259,7 +281,11 @@ export default function OrlSection(props: OrlSectionProps) {
               label: 'Konkomitantně CBDCA weekly (1,5 AUC)',
               isOther: false,
             },
-            { value: 'bez chemoterapie', label: 'Bez chemoterapie', isOther: false },
+            {
+              value: 'bez chemoterapie',
+              label: 'Bez chemoterapie',
+              isOther: false,
+            },
             { value: 'jine', label: 'Jiné', isOther: true },
           ]}
           value={chemoterapie}

@@ -11,6 +11,7 @@ import UniverzalSection from './UniverzalSection';
 import MammaeSection from './MammaeSection';
 import MammaeResults from './MammaeResults';
 import OrlSection from './OrlSection';
+import OrlResults from './OrlResults';
 import GynekologickeNadorySection from './GynekologickeNadorySection';
 
 function RadioterapieForm() {
@@ -574,6 +575,28 @@ function RadioterapieForm() {
                     dibh={dibh}
                     rozsah={rozsah}
                     rozsahJine={rozsahJine}
+                  />
+                ) : (
+                  <></>
+                )}
+                {diagnoza === 'orl' ? (
+                  <OrlResults
+                    gender={gender}
+                    zamer={zamer}
+                    histologie={histologie}
+                    histologieJine={histologieJine}
+                    cilovyObjem={cilovyObjem}
+                    cilovyObjemJine={cilovyObjemJine}
+                    frakcionace={frakcionace}
+                    frakcionaceJine={frakcionaceJine}
+                    chemoterapie={chemoterapie}
+                    chemoterapieJine={chemoterapieJine}
+                    fixacePoloha={fixacePoloha}
+                    fixacePolohaJine={fixacePolohaJine}
+                    odbery={odbery}
+                    potrebaZavedeniPEG={potrebaZavedeniPEG}
+                    potrebaDoplneniPETCTMR={potrebaDoplneniPETCTMR}
+                    potrebaZavedeniPICC={potrebaZavedeniPICC}
                   />
                 ) : (
                   <></>
