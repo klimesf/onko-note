@@ -10,6 +10,7 @@ import UniverzalResults from './UniverzalResults';
 import UniverzalSection from './UniverzalSection';
 import MammaeSection from './MammaeSection';
 import MammaeResults from './MammaeResults';
+import OrlSection from './OrlSection';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
@@ -52,6 +53,14 @@ function RadioterapieForm() {
   const [dibh, setDibh] = useState<string>('');
   const [rozsah, setRozsah] = useState<string>('');
   const [rozsahJine, setRozsahJine] = useState<string>('');
+  const [cilovyObjem, setCilovyObjem] = useState<string>('');
+  const [cilovyObjemJine, setCilovyObjemJine] = useState<string>('');
+  const [fixacePoloha, setFixacePoloha] = useState<string>('');
+  const [fixacePolohaJine, setFixacePolohaJine] = useState<string>('');
+  const [potrebaZavedeniPEG, setPotrebaZavedeniPEG] = useState<string>('');
+  const [potrebaDoplneniPETCTMR, setPotrebaDoplneniPETCTMR] =
+    useState<string>('');
+  const [potrebaZavedeniPICC, setPotrebaZavedeniPICC] = useState<string>('');
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -143,8 +152,8 @@ function RadioterapieForm() {
                   <option value="plice">Plíce</option>
                   <option value="univerzal">Univerzál</option>
                   <option value="mammae">Mammae</option>
-                  {/*<option value="orl">ORL</option>
-                  <option value="gynekologicke-nadory">Gynekologické nádory</option>
+                  <option value="orl">ORL</option>
+                  {/*<option value="gynekologicke-nadory">Gynekologické nádory</option>
                   <option value="anus">Anus</option>*/}
                 </Select>
               </Field>
@@ -334,6 +343,42 @@ function RadioterapieForm() {
                 setRozsah={setRozsah}
                 rozsahJine={rozsahJine}
                 setRozsahJine={setRozsahJine}
+              />
+            ) : (
+              <></>
+            )}
+            {diagnoza === 'orl' ? (
+              <OrlSection
+                histologie={histologie}
+                setHistologie={setHistologie}
+                histologieJine={histologieJine}
+                setHistologieJine={setHistologieJine}
+                zamer={zamer}
+                setZamer={setZamer}
+                cilovyObjem={cilovyObjem}
+                setCilovyObjem={setCilovyObjem}
+                cilovyObjemJine={cilovyObjemJine}
+                setCilovyObjemJine={setCilovyObjemJine}
+                frakcionace={frakcionace}
+                setFrakcionace={setFrakcionace}
+                frakcionaceJine={frakcionaceJine}
+                setFrakcionaceJine={setFrakcionaceJine}
+                chemoterapie={chemoterapie}
+                setChemoterapie={setChemoterapie}
+                chemoterapieJine={chemoterapieJine}
+                setChemoterapieJine={setChemoterapieJine}
+                fixacePoloha={fixacePoloha}
+                setFixacePoloha={setFixacePoloha}
+                fixacePolohaJine={fixacePolohaJine}
+                setFixacePolohaJine={setFixacePolohaJine}
+                odbery={odbery}
+                setOdbery={setOdbery}
+                potrebaZavedeniPEG={potrebaZavedeniPEG}
+                setPotrebaZavedeniPEG={setPotrebaZavedeniPEG}
+                potrebaDoplneniPETCTMR={potrebaDoplneniPETCTMR}
+                setPotrebaDoplneniPETCTMR={setPotrebaDoplneniPETCTMR}
+                potrebaZavedeniPICC={potrebaZavedeniPICC}
+                setPotrebaZavedeniPICC={setPotrebaZavedeniPICC}
               />
             ) : (
               <></>
