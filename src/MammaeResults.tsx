@@ -43,7 +43,7 @@ function MammaeResults({
 }: MammaeResultsProps) {
   const histologieText = histologie === 'jine' ? histologieJine : histologie;
   const rozsahText = rozsah === 'jiné' ? rozsahJine : rozsah;
-	const boostText = boost === 'jiné' ? boostJine : boost;
+  const boostText = boost === 'jiné' ? boostJine : boost;
 
   const getPolohaAFixace = (): string => {
     if (poloha === fixace) {
@@ -123,7 +123,7 @@ function MammaeResults({
           <br />
           Plánovaný frakcionační režim:{' '}
           {frakcionace === 'jiné' ? frakcionaceJine : frakcionace}{' '}
-					{boost !== 'bez boostu' ? <>+ boost {boostText}{' '}</> : <></>}
+          {boost !== 'bez boostu' ? <>+ boost {boostText} </> : <></>}
           {dibh === 'ano' ? <>v DIBH</> : <></>}
           <br />
           Navrhovaná poloha a fixace: {getPolohaAFixace()}

@@ -31,7 +31,7 @@ type GynekologickeNadorySectionProps = {
 };
 
 export default function GynekologickeNadorySection(
-  props: GynekologickeNadorySectionProps,
+  props: GynekologickeNadorySectionProps
 ) {
   const {
     zamer,
@@ -220,7 +220,11 @@ export default function GynekologickeNadorySection(
                 'PTV low 45Gy/25fr./1,8Gy + SIB PTVmid 55Gy/25fr./2,2Gy + SIB PTV high 57,5Gy/25fr./2,3Gy',
               isOther: false,
             },
-            { value: '30Gy/10fr./3Gy', label: '30Gy/10fr./3Gy', isOther: false },
+            {
+              value: '30Gy/10fr./3Gy',
+              label: '30Gy/10fr./3Gy',
+              isOther: false,
+            },
             { value: '20Gy/5fr./4Gy', label: '20Gy/5fr./4Gy', isOther: false },
             { value: '8Gy/1fr./8Gy', label: '8Gy/1fr./8Gy', isOther: false },
             { value: '16Gy/2fr./8Gy', label: '16Gy/2fr./8Gy', isOther: false },
@@ -254,8 +258,10 @@ export default function GynekologickeNadorySection(
               isOther: false,
             },
             {
-              value: 'HDR uterovaginální brachyterapie - 4x7Gy na oblast HR-CTV',
-              label: 'HDR uterovaginální brachyterapie - 4x7Gy na oblast HR-CTV',
+              value:
+                'HDR uterovaginální brachyterapie - 4x7Gy na oblast HR-CTV',
+              label:
+                'HDR uterovaginální brachyterapie - 4x7Gy na oblast HR-CTV',
               isOther: false,
             },
             { value: 'ne', label: 'Ne', isOther: false },
