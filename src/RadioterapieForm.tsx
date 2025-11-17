@@ -13,6 +13,7 @@ import MammaeResults from './MammaeResults';
 import OrlSection from './OrlSection';
 import OrlResults from './OrlResults';
 import GynekologickeNadorySection from './GynekologickeNadorySection';
+import GynekologickeNadoryResults from './GynekologickeNadoryResults';
 
 function RadioterapieForm() {
   const [gender, setGender] = useState<string>('');
@@ -597,6 +598,26 @@ function RadioterapieForm() {
                     potrebaZavedeniPEG={potrebaZavedeniPEG}
                     potrebaDoplneniPETCTMR={potrebaDoplneniPETCTMR}
                     potrebaZavedeniPICC={potrebaZavedeniPICC}
+                  />
+                ) : (
+                  <></>
+                )}
+                {diagnoza === 'gynekologicke-nadory' ? (
+                  <GynekologickeNadoryResults
+                    gender={gender}
+                    zamer={zamer}
+                    fixace={fixace}
+                    fixaceJine={fixaceJine}
+                    poloha={poloha}
+                    polohaJine={polohaJine}
+                    odbery={odbery}
+                    chemoterapie={chemoterapie}
+                    chemoterapieJine={chemoterapieJine}
+                    imunoterapie={imunoterapie}
+                    imunoterapieJine={imunoterapieJine}
+                    frakcionace={frakcionace}
+                    frakcionaceJine={frakcionaceJine}
+                    brachyterapie={brachyterapie}
                   />
                 ) : (
                   <></>
