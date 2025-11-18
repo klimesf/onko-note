@@ -1,42 +1,8 @@
-import type { Dispatch, SetStateAction } from 'react';
+import type { SetStateAction } from 'react';
 import RadioInput from './inputs/RadioInput';
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-type RektumSectionProps = {
-  histologie: string;
-  setHistologie: Dispatch<SetStateAction<string>>;
-  histologieJine: string;
-  setHistologieJine: Dispatch<SetStateAction<string>>;
-  lokalizace: string;
-  setLokalizace: Dispatch<SetStateAction<string>>;
-  chemoterapie: string;
-  setChemoterapie: Dispatch<SetStateAction<string>>;
-  chemoterapieJine: string;
-  setChemoterapieJine: Dispatch<SetStateAction<string>>;
-  odstup: string;
-  setOdstup: Dispatch<SetStateAction<string>>;
-  odstupJine: string;
-  setOdstupJine: Dispatch<SetStateAction<string>>;
-  fixace: string;
-  setFixace: Dispatch<SetStateAction<string>>;
-  fixaceJine: string;
-  setFixaceJine: Dispatch<SetStateAction<string>>;
-  poloha: string;
-  setPoloha: Dispatch<SetStateAction<string>>;
-  polohaJine: string;
-  setPolohaJine: Dispatch<SetStateAction<string>>;
-  zamer: string;
-  setZamer: Dispatch<SetStateAction<string>>;
-  frakcionace: string;
-  setFrakcionace: Dispatch<SetStateAction<string>>;
-  frakcionaceJine: string;
-  setFrakcionaceJine: Dispatch<SetStateAction<string>>;
-  odbery: string;
-  setOdbery: Dispatch<SetStateAction<string>>;
-  rezim: string;
-  setRezim: Dispatch<SetStateAction<string>>;
-};
-
-export default function RektumSection(props: RektumSectionProps) {
+export default function RektumSection() {
   const {
     histologie,
     setHistologie,
@@ -70,7 +36,7 @@ export default function RektumSection(props: RektumSectionProps) {
     setOdbery,
     rezim,
     setRezim,
-  } = props;
+  } = useRadioterapieForm();
 
   const onRezimChange = (rezim: SetStateAction<string>) => {
     setRezim(rezim);

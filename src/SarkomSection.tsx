@@ -1,36 +1,7 @@
-import type { Dispatch, SetStateAction } from 'react';
 import RadioInput from './inputs/RadioInput';
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-type SarkomSectionProps = {
-  histologie: string;
-  setHistologie: Dispatch<SetStateAction<string>>;
-  lokalizace: string;
-  setLokalizace: Dispatch<SetStateAction<string>>;
-  lokalizaceJine: string;
-  setLokalizaceJine: Dispatch<SetStateAction<string>>;
-  chemoterapie: string;
-  setChemoterapie: Dispatch<SetStateAction<string>>;
-  chemoterapieJine: string;
-  setChemoterapieJine: Dispatch<SetStateAction<string>>;
-  fixace: string;
-  setFixace: Dispatch<SetStateAction<string>>;
-  fixaceJine: string;
-  setFixaceJine: Dispatch<SetStateAction<string>>;
-  poloha: string;
-  setPoloha: Dispatch<SetStateAction<string>>;
-  bolus: string;
-  setBolus: Dispatch<SetStateAction<string>>;
-  zamer: string;
-  setZamer: Dispatch<SetStateAction<string>>;
-  frakcionace: string;
-  setFrakcionace: Dispatch<SetStateAction<string>>;
-  frakcionaceJine: string;
-  setFrakcionaceJine: Dispatch<SetStateAction<string>>;
-  odbery: string;
-  setOdbery: Dispatch<SetStateAction<string>>;
-};
-
-export default function SarkomSection(props: SarkomSectionProps) {
+export default function SarkomSection() {
   const {
     histologie,
     setHistologie,
@@ -58,7 +29,7 @@ export default function SarkomSection(props: SarkomSectionProps) {
     setFrakcionaceJine,
     odbery,
     setOdbery,
-  } = props;
+  } = useRadioterapieForm();
 
   return (
     <>

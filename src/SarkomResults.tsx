@@ -1,36 +1,22 @@
-type SarkomResultsProps = {
-  gender: string;
-  zamer: string;
-  histologie: string;
-  lokalizace: string;
-  lokalizaceJine: string;
-  frakcionace: string;
-  frakcionaceJine: string;
-  poloha: string;
-  fixace: string;
-  fixaceJine: string;
-  bolus: string;
-  chemoterapie: string;
-  chemoterapieJine: string;
-  odbery: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function SarkomResults({
-  gender,
-  zamer,
-  histologie,
-  lokalizace,
-  lokalizaceJine,
-  frakcionace,
-  frakcionaceJine,
-  poloha,
-  fixace,
-  fixaceJine,
-  bolus,
-  chemoterapie,
-  chemoterapieJine,
-  odbery,
-}: SarkomResultsProps) {
+function SarkomResults() {
+  const {
+    gender,
+    zamer,
+    histologie,
+    lokalizace,
+    lokalizaceJine,
+    frakcionace,
+    frakcionaceJine,
+    poloha,
+    fixace,
+    fixaceJine,
+    bolus,
+    chemoterapie,
+    chemoterapieJine,
+    odbery,
+  } = useRadioterapieForm();
   return (
     <>
       <div className="flex flex-col gap-y-2">

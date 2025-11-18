@@ -1,22 +1,8 @@
-type UniverzalResultsProps = {
-  gender: string;
-  zamer: string;
-  poloha: string;
-  polohaJine: string;
-  fixace: string;
-  fixaceJine: string;
-  odbery: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function UniverzalResults({
-  gender,
-  zamer,
-  poloha,
-  polohaJine,
-  fixace,
-  fixaceJine,
-  odbery,
-}: UniverzalResultsProps) {
+function UniverzalResults() {
+  const { gender, zamer, poloha, polohaJine, fixace, fixaceJine, odbery } =
+    useRadioterapieForm();
   const getPolohaAFixace = (): string => {
     if (poloha === fixace) {
       return 'Dle standardu';

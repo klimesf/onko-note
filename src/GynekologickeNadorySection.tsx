@@ -1,38 +1,7 @@
-import type { Dispatch, SetStateAction } from 'react';
 import RadioInput from './inputs/RadioInput';
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-type GynekologickeNadorySectionProps = {
-  zamer: string;
-  setZamer: Dispatch<SetStateAction<string>>;
-  fixace: string;
-  setFixace: Dispatch<SetStateAction<string>>;
-  fixaceJine: string;
-  setFixaceJine: Dispatch<SetStateAction<string>>;
-  poloha: string;
-  setPoloha: Dispatch<SetStateAction<string>>;
-  polohaJine: string;
-  setPolohaJine: Dispatch<SetStateAction<string>>;
-  odbery: string;
-  setOdbery: Dispatch<SetStateAction<string>>;
-  chemoterapie: string;
-  setChemoterapie: Dispatch<SetStateAction<string>>;
-  chemoterapieJine: string;
-  setChemoterapieJine: Dispatch<SetStateAction<string>>;
-  imunoterapie: string;
-  setImunoterapie: Dispatch<SetStateAction<string>>;
-  imunoterapieJine: string;
-  setImunoterapieJine: Dispatch<SetStateAction<string>>;
-  frakcionace: string;
-  setFrakcionace: Dispatch<SetStateAction<string>>;
-  frakcionaceJine: string;
-  setFrakcionaceJine: Dispatch<SetStateAction<string>>;
-  brachyterapie: string;
-  setBrachyterapie: Dispatch<SetStateAction<string>>;
-};
-
-export default function GynekologickeNadorySection(
-  props: GynekologickeNadorySectionProps
-) {
+export default function GynekologickeNadorySection() {
   const {
     zamer,
     setZamer,
@@ -60,7 +29,7 @@ export default function GynekologickeNadorySection(
     setFrakcionaceJine,
     brachyterapie,
     setBrachyterapie,
-  } = props;
+  } = useRadioterapieForm();
 
   return (
     <>

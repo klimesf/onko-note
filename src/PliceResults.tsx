@@ -1,46 +1,27 @@
-type PliceResultsProps = {
-  gender: string;
-  zamer: string;
-  histologie: string;
-  histologieJine: string;
-  lokalizace: string;
-  frakcionace: string;
-  frakcionaceJine: string;
-  poloha: string;
-  polohaJine: string;
-  fixace: string;
-  fixaceJine: string;
-  konkomitantniChemoterapie: string;
-  konkomitantniChemoterapieJine: string;
-  odbery: string;
-  vysaditCilenouLecbu: string;
-  kardiostimulator: string;
-  kardiostimulatorKontrolaZajistena: string;
-  fuzniPetCt: string;
-  fuzniMri: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function PliceResults({
-  gender,
-  zamer,
-  histologie,
-  histologieJine,
-  lokalizace,
-  frakcionace,
-  frakcionaceJine,
-  poloha,
-  polohaJine,
-  fixace,
-  fixaceJine,
-  konkomitantniChemoterapie,
-  konkomitantniChemoterapieJine,
-  odbery,
-  vysaditCilenouLecbu,
-  kardiostimulator,
-  kardiostimulatorKontrolaZajistena,
-  fuzniPetCt,
-  fuzniMri,
-}: PliceResultsProps) {
+function PliceResults() {
+  const {
+    gender,
+    zamer,
+    histologie,
+    histologieJine,
+    lokalizace,
+    frakcionace,
+    frakcionaceJine,
+    poloha,
+    polohaJine,
+    fixace,
+    fixaceJine,
+    konkomitantniChemoterapie,
+    konkomitantniChemoterapieJine,
+    odbery,
+    vysaditCilenouLecbu,
+    kardiostimulator,
+    kardiostimulatorKontrolaZajistena,
+    fuzniPetCt,
+    fuzniMri,
+  } = useRadioterapieForm();
   const histologieText = histologie === 'jine' ? histologieJine : histologie;
 
   const getPolohaAFixace = (): string => {

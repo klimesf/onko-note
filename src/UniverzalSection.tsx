@@ -1,22 +1,7 @@
-import type { Dispatch, SetStateAction } from 'react';
 import RadioInput from './inputs/RadioInput';
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-type UniverzalSectionProps = {
-  zamer: string;
-  setZamer: Dispatch<SetStateAction<string>>;
-  fixace: string;
-  setFixace: Dispatch<SetStateAction<string>>;
-  fixaceJine: string;
-  setFixaceJine: Dispatch<SetStateAction<string>>;
-  poloha: string;
-  setPoloha: Dispatch<SetStateAction<string>>;
-  polohaJine: string;
-  setPolohaJine: Dispatch<SetStateAction<string>>;
-  odbery: string;
-  setOdbery: Dispatch<SetStateAction<string>>;
-};
-
-export default function UniverzalSection(props: UniverzalSectionProps) {
+export default function UniverzalSection() {
   const {
     zamer,
     setZamer,
@@ -30,7 +15,7 @@ export default function UniverzalSection(props: UniverzalSectionProps) {
     setPolohaJine,
     odbery,
     setOdbery,
-  } = props;
+  } = useRadioterapieForm();
 
   return (
     <>

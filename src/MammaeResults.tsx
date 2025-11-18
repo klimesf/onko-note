@@ -1,46 +1,27 @@
-type MammaeResultsProps = {
-  gender: string;
-  zamer: string;
-  histologie: string;
-  histologieJine: string;
-  lokalizace: string;
-  frakcionace: string;
-  frakcionaceJine: string;
-  poloha: string;
-  polohaJine: string;
-  fixace: string;
-  fixaceJine: string;
-  odbery: string;
-  kardiostimulator: string;
-  kardiostimulatorKontrolaZajistena: string;
-  boost: string;
-  boostJine: string;
-  dibh: string;
-  rozsah: string;
-  rozsahJine: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function MammaeResults({
-  gender,
-  zamer,
-  histologie,
-  histologieJine,
-  lokalizace,
-  frakcionace,
-  frakcionaceJine,
-  poloha,
-  polohaJine,
-  fixace,
-  fixaceJine,
-  odbery,
-  kardiostimulator,
-  kardiostimulatorKontrolaZajistena,
-  boost,
-  boostJine,
-  dibh,
-  rozsah,
-  rozsahJine,
-}: MammaeResultsProps) {
+function MammaeResults() {
+  const {
+    gender,
+    zamer,
+    histologie,
+    histologieJine,
+    lokalizace,
+    frakcionace,
+    frakcionaceJine,
+    poloha,
+    polohaJine,
+    fixace,
+    fixaceJine,
+    odbery,
+    kardiostimulator,
+    kardiostimulatorKontrolaZajistena,
+    boost,
+    boostJine,
+    dibh,
+    rozsah,
+    rozsahJine,
+  } = useRadioterapieForm();
   const histologieText = histologie === 'jine' ? histologieJine : histologie;
   const rozsahText = rozsah === 'jiné' ? rozsahJine : rozsah;
   const boostText = boost === 'jiné' ? boostJine : boost;

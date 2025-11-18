@@ -1,48 +1,7 @@
-import type { Dispatch, SetStateAction } from 'react';
 import RadioInput from './inputs/RadioInput';
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-type PliceSectionProps = {
-  histologie: string;
-  setHistologie: Dispatch<SetStateAction<string>>;
-  histologieJine: string;
-  setHistologieJine: Dispatch<SetStateAction<string>>;
-  lokalizace: string;
-  setLokalizace: Dispatch<SetStateAction<string>>;
-  kardiostimulator: string;
-  setKardiostimulator: Dispatch<SetStateAction<string>>;
-  kardiostimulatorDependentni: string;
-  setKardiostimulatorDependentni: Dispatch<SetStateAction<string>>;
-  kardiostimulatorKontrolaZajistena: string;
-  setKardiostimulatorKontrolaZajistena: Dispatch<SetStateAction<string>>;
-  konkomitantniChemoterapie: string;
-  setKonkomitantniChemoterapie: Dispatch<SetStateAction<string>>;
-  konkomitantniChemoterapieJine: string;
-  setKonkomitantniChemoterapieJine: Dispatch<SetStateAction<string>>;
-  vysaditCilenouLecbu: string;
-  setVysaditCilenouLecbu: Dispatch<SetStateAction<string>>;
-  fuzniPetCt: string;
-  setFuzniPetCt: Dispatch<SetStateAction<string>>;
-  fuzniMri: string;
-  setFuzniMri: Dispatch<SetStateAction<string>>;
-  fixace: string;
-  setFixace: Dispatch<SetStateAction<string>>;
-  fixaceJine: string;
-  setFixaceJine: Dispatch<SetStateAction<string>>;
-  poloha: string;
-  setPoloha: Dispatch<SetStateAction<string>>;
-  polohaJine: string;
-  setPolohaJine: Dispatch<SetStateAction<string>>;
-  zamer: string;
-  setZamer: Dispatch<SetStateAction<string>>;
-  frakcionace: string;
-  setFrakcionace: Dispatch<SetStateAction<string>>;
-  frakcionaceJine: string;
-  setFrakcionaceJine: Dispatch<SetStateAction<string>>;
-  odbery: string;
-  setOdbery: Dispatch<SetStateAction<string>>;
-};
-
-export default function PliceSection(props: PliceSectionProps) {
+export default function PliceSection() {
   const {
     histologie,
     setHistologie,
@@ -82,7 +41,7 @@ export default function PliceSection(props: PliceSectionProps) {
     setFrakcionaceJine,
     odbery,
     setOdbery,
-  } = props;
+  } = useRadioterapieForm();
 
   return (
     <>

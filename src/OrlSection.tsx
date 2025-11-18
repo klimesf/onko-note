@@ -1,40 +1,7 @@
-import type { Dispatch, SetStateAction } from 'react';
 import RadioInput from './inputs/RadioInput';
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-type OrlSectionProps = {
-  histologie: string;
-  setHistologie: Dispatch<SetStateAction<string>>;
-  histologieJine: string;
-  setHistologieJine: Dispatch<SetStateAction<string>>;
-  zamer: string;
-  setZamer: Dispatch<SetStateAction<string>>;
-  cilovyObjem: string;
-  setCilovyObjem: Dispatch<SetStateAction<string>>;
-  cilovyObjemJine: string;
-  setCilovyObjemJine: Dispatch<SetStateAction<string>>;
-  frakcionace: string;
-  setFrakcionace: Dispatch<SetStateAction<string>>;
-  frakcionaceJine: string;
-  setFrakcionaceJine: Dispatch<SetStateAction<string>>;
-  chemoterapie: string;
-  setChemoterapie: Dispatch<SetStateAction<string>>;
-  chemoterapieJine: string;
-  setChemoterapieJine: Dispatch<SetStateAction<string>>;
-  fixacePoloha: string;
-  setFixacePoloha: Dispatch<SetStateAction<string>>;
-  fixacePolohaJine: string;
-  setFixacePolohaJine: Dispatch<SetStateAction<string>>;
-  odbery: string;
-  setOdbery: Dispatch<SetStateAction<string>>;
-  potrebaZavedeniPEG: string;
-  setPotrebaZavedeniPEG: Dispatch<SetStateAction<string>>;
-  potrebaDoplneniPETCTMR: string;
-  setPotrebaDoplneniPETCTMR: Dispatch<SetStateAction<string>>;
-  potrebaZavedeniPICC: string;
-  setPotrebaZavedeniPICC: Dispatch<SetStateAction<string>>;
-};
-
-export default function OrlSection(props: OrlSectionProps) {
+export default function OrlSection() {
   const {
     histologie,
     setHistologie,
@@ -66,7 +33,7 @@ export default function OrlSection(props: OrlSectionProps) {
     setPotrebaDoplneniPETCTMR,
     potrebaZavedeniPICC,
     setPotrebaZavedeniPICC,
-  } = props;
+  } = useRadioterapieForm();
 
   return (
     <>

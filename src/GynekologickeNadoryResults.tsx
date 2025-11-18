@@ -1,36 +1,22 @@
-type GynekologickeNadoryResultsProps = {
-  gender: string;
-  zamer: string;
-  fixace: string;
-  fixaceJine: string;
-  poloha: string;
-  polohaJine: string;
-  odbery: string;
-  chemoterapie: string;
-  chemoterapieJine: string;
-  imunoterapie: string;
-  imunoterapieJine: string;
-  frakcionace: string;
-  frakcionaceJine: string;
-  brachyterapie: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function GynekologickeNadoryResults({
-  gender,
-  zamer,
-  fixace,
-  fixaceJine,
-  poloha,
-  polohaJine,
-  odbery,
-  chemoterapie,
-  chemoterapieJine,
-  imunoterapie,
-  imunoterapieJine,
-  frakcionace,
-  frakcionaceJine,
-  brachyterapie,
-}: GynekologickeNadoryResultsProps) {
+function GynekologickeNadoryResults() {
+  const {
+    gender,
+    zamer,
+    fixace,
+    fixaceJine,
+    poloha,
+    polohaJine,
+    odbery,
+    chemoterapie,
+    chemoterapieJine,
+    imunoterapie,
+    imunoterapieJine,
+    frakcionace,
+    frakcionaceJine,
+    brachyterapie,
+  } = useRadioterapieForm();
   const frakcionaceText =
     frakcionace === 'jine' ? frakcionaceJine : frakcionace;
   const chemoterapieText =
@@ -144,9 +130,9 @@ function GynekologickeNadoryResults({
           Kombinace s jinými terapeutickými modalitami: <br />
           {isBrachyterapieValeckOvoidy() ? (
             <>
-              {getBrachyterapieText()}. Indikována {brachyterapie}. První aplikace
-              v plánu... , na oddělení brachyterapie, budova pro dospělé, uzel A,
-              minus 3. patro.
+              {getBrachyterapieText()}. Indikována {brachyterapie}. První
+              aplikace v plánu... , na oddělení brachyterapie, budova pro
+              dospělé, uzel A, minus 3. patro.
               <br />
             </>
           ) : (
@@ -156,9 +142,9 @@ function GynekologickeNadoryResults({
             <>
               Uvag: Indikována {brachyterapie}. První aplikace v krátké celkové
               anestezii proběhne za hospitalizace na 2. lůžkové stanici
-              onkologické kliniky (3.patro, uzel B). Příjem k hospitalizaci .....,
-              čas příjmu bude pacientce sdělen telefonicky den předem. S sebou
-              interní předoperační vyšetření, pacientka si zajistí cestou
+              onkologické kliniky (3.patro, uzel B). Příjem k hospitalizaci
+              ....., čas příjmu bude pacientce sdělen telefonicky den předem. S
+              sebou interní předoperační vyšetření, pacientka si zajistí cestou
               praktického lékaře.
               <br />
             </>
@@ -180,8 +166,7 @@ function GynekologickeNadoryResults({
           )}
           {hasImunoterapie() ? (
             <>
-              Indikována konkomitantní imunoterapie v režimu:{' '}
-              {imunoterapieText}
+              Indikována konkomitantní imunoterapie v režimu: {imunoterapieText}
               <br />
               První cyklus imunoterapie v plánu ------- Imunoterapie bude
               aplikována ambulantně na stacionáři onkologické kliniky (3.patro,
@@ -251,8 +236,8 @@ function GynekologickeNadoryResults({
           <br />
           <strong>Příprava na ozařování a plánovací CT:</strong>
           <br />
-          30 minut před plánovacím CT a každým ozařováním se vymočte, poté vypijte
-          cca 500 ml vody (půl litru).
+          30 minut před plánovacím CT a každým ozařováním se vymočte, poté
+          vypijte cca 500 ml vody (půl litru).
           <br />
           Od této chvíle nechoďte na toaletu, aby močový měchýř zůstal naplněný.
           <br />

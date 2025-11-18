@@ -14,59 +14,20 @@ import OrlSection from './OrlSection';
 import OrlResults from './OrlResults';
 import GynekologickeNadorySection from './GynekologickeNadorySection';
 import GynekologickeNadoryResults from './GynekologickeNadoryResults';
+import {
+  RadioterapieFormProvider,
+  useRadioterapieForm,
+} from './hooks/useRadioterapieForm';
 
-function RadioterapieForm() {
-  const [gender, setGender] = useState<string>('');
-  const [osetrujici, setOsetrujici] = useState<string>('');
-  const [diagnoza, setDiagnoza] = useState<string>('');
-  const [histologie, setHistologie] = useState<string>('');
-  const [histologieJine, setHistologieJine] = useState<string>('');
-  const [lokalizace, setLokalizace] = useState<string>('');
-  const [kardiostimulator, setKardiostimulator] = useState<string>('');
-  const [kardiostimulatorDependentni, setKardiostimulatorDependentni] =
-    useState<string>('');
-  const [
-    kardiostimulatorKontrolaZajistena,
-    setKardiostimulatorKontrolaZajistena,
-  ] = useState<string>('');
-  const [konkomitantniChemoterapie, setKonkomitantniChemoterapie] =
-    useState<string>('');
-  const [konkomitantniChemoterapieJine, setKonkomitantniChemoterapieJine] =
-    useState<string>('');
-  const [vysaditCilenouLecbu, setVysaditCilenouLecbu] = useState<string>('');
-  const [fuzniPetCt, setFuzniPetCt] = useState<string>('');
-  const [fuzniMri, setFuzniMri] = useState<string>('');
-  const [lokalizaceJine, setLokalizaceJine] = useState<string>('');
-  const [chemoterapie, setChemoterapie] = useState<string>('');
-  const [chemoterapieJine, setChemoterapieJine] = useState<string>('');
-  const [imunoterapie, setImunoterapie] = useState<string>('');
-  const [imunoterapieJine, setImunoterapieJine] = useState<string>('');
-  const [odstup, setOdstup] = useState<string>('');
-  const [odstupJine, setOdstupJine] = useState<string>('');
-  const [fixace, setFixace] = useState<string>('');
-  const [fixaceJine, setFixaceJine] = useState<string>('');
-  const [poloha, setPoloha] = useState<string>('');
-  const [polohaJine, setPolohaJine] = useState<string>('');
-  const [bolus, setBolus] = useState<string>('');
-  const [zamer, setZamer] = useState<string>('');
-  const [frakcionace, setFrakcionace] = useState<string>('');
-  const [frakcionaceJine, setFrakcionaceJine] = useState<string>('');
-  const [odbery, setOdbery] = useState<string>('');
-  const [rezim, setRezim] = useState<string>('');
-  const [boost, setBoost] = useState<string>('');
-  const [boostJine, setBoostJine] = useState<string>('');
-  const [dibh, setDibh] = useState<string>('');
-  const [rozsah, setRozsah] = useState<string>('');
-  const [rozsahJine, setRozsahJine] = useState<string>('');
-  const [brachyterapie, setBrachyterapie] = useState<string>('');
-  const [cilovyObjem, setCilovyObjem] = useState<string>('');
-  const [cilovyObjemJine, setCilovyObjemJine] = useState<string>('');
-  const [fixacePoloha, setFixacePoloha] = useState<string>('');
-  const [fixacePolohaJine, setFixacePolohaJine] = useState<string>('');
-  const [potrebaZavedeniPEG, setPotrebaZavedeniPEG] = useState<string>('');
-  const [potrebaDoplneniPETCTMR, setPotrebaDoplneniPETCTMR] =
-    useState<string>('');
-  const [potrebaZavedeniPICC, setPotrebaZavedeniPICC] = useState<string>('');
+function RadioterapieFormContent() {
+  const {
+    gender,
+    setGender,
+    osetrujici,
+    setOsetrujici,
+    diagnoza,
+    setDiagnoza,
+  } = useRadioterapieForm();
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
@@ -169,257 +130,14 @@ function RadioterapieForm() {
 
             <div className="sm:col-span-4"></div>
 
-            {diagnoza === 'sarkom' ? (
-              <SarkomSection
-                histologie={histologie}
-                setHistologie={setHistologie}
-                lokalizace={lokalizace}
-                setLokalizace={setLokalizace}
-                lokalizaceJine={lokalizaceJine}
-                setLokalizaceJine={setLokalizaceJine}
-                chemoterapie={chemoterapie}
-                setChemoterapie={setChemoterapie}
-                chemoterapieJine={chemoterapieJine}
-                setChemoterapieJine={setChemoterapieJine}
-                fixace={fixace}
-                setFixace={setFixace}
-                fixaceJine={fixaceJine}
-                setFixaceJine={setFixaceJine}
-                poloha={poloha}
-                setPoloha={setPoloha}
-                bolus={bolus}
-                setBolus={setBolus}
-                zamer={zamer}
-                setZamer={setZamer}
-                frakcionace={frakcionace}
-                setFrakcionace={setFrakcionace}
-                frakcionaceJine={frakcionaceJine}
-                setFrakcionaceJine={setFrakcionaceJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-              />
-            ) : (
-              <></>
-            )}
-            {diagnoza === 'rektum' ? (
-              <RektumSection
-                histologie={histologie}
-                setHistologie={setHistologie}
-                histologieJine={histologieJine}
-                setHistologieJine={setHistologieJine}
-                lokalizace={lokalizace}
-                setLokalizace={setLokalizace}
-                chemoterapie={chemoterapie}
-                setChemoterapie={setChemoterapie}
-                chemoterapieJine={chemoterapieJine}
-                setChemoterapieJine={setChemoterapieJine}
-                odstup={odstup}
-                setOdstup={setOdstup}
-                odstupJine={odstupJine}
-                setOdstupJine={setOdstupJine}
-                fixace={fixace}
-                setFixace={setFixace}
-                fixaceJine={fixaceJine}
-                setFixaceJine={setFixaceJine}
-                poloha={poloha}
-                setPoloha={setPoloha}
-                polohaJine={polohaJine}
-                setPolohaJine={setPolohaJine}
-                zamer={zamer}
-                setZamer={setZamer}
-                frakcionace={frakcionace}
-                setFrakcionace={setFrakcionace}
-                frakcionaceJine={frakcionaceJine}
-                setFrakcionaceJine={setFrakcionaceJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-                rezim={rezim}
-                setRezim={setRezim}
-              />
-            ) : (
-              <></>
-            )}
-            {diagnoza === 'plice' ? (
-              <PliceSection
-                histologie={histologie}
-                setHistologie={setHistologie}
-                histologieJine={histologieJine}
-                setHistologieJine={setHistologieJine}
-                lokalizace={lokalizace}
-                setLokalizace={setLokalizace}
-                kardiostimulator={kardiostimulator}
-                setKardiostimulator={setKardiostimulator}
-                kardiostimulatorDependentni={kardiostimulatorDependentni}
-                setKardiostimulatorDependentni={setKardiostimulatorDependentni}
-                kardiostimulatorKontrolaZajistena={
-                  kardiostimulatorKontrolaZajistena
-                }
-                setKardiostimulatorKontrolaZajistena={
-                  setKardiostimulatorKontrolaZajistena
-                }
-                konkomitantniChemoterapie={konkomitantniChemoterapie}
-                setKonkomitantniChemoterapie={setKonkomitantniChemoterapie}
-                konkomitantniChemoterapieJine={konkomitantniChemoterapieJine}
-                setKonkomitantniChemoterapieJine={
-                  setKonkomitantniChemoterapieJine
-                }
-                vysaditCilenouLecbu={vysaditCilenouLecbu}
-                setVysaditCilenouLecbu={setVysaditCilenouLecbu}
-                fuzniPetCt={fuzniPetCt}
-                setFuzniPetCt={setFuzniPetCt}
-                fuzniMri={fuzniMri}
-                setFuzniMri={setFuzniMri}
-                fixace={fixace}
-                setFixace={setFixace}
-                fixaceJine={fixaceJine}
-                setFixaceJine={setFixaceJine}
-                poloha={poloha}
-                setPoloha={setPoloha}
-                polohaJine={polohaJine}
-                setPolohaJine={setPolohaJine}
-                zamer={zamer}
-                setZamer={setZamer}
-                frakcionace={frakcionace}
-                setFrakcionace={setFrakcionace}
-                frakcionaceJine={frakcionaceJine}
-                setFrakcionaceJine={setFrakcionaceJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-              />
-            ) : (
-              <></>
-            )}
-            {diagnoza === 'univerzal' ? (
-              <UniverzalSection
-                zamer={zamer}
-                setZamer={setZamer}
-                fixace={fixace}
-                setFixace={setFixace}
-                fixaceJine={fixaceJine}
-                setFixaceJine={setFixaceJine}
-                poloha={poloha}
-                setPoloha={setPoloha}
-                polohaJine={polohaJine}
-                setPolohaJine={setPolohaJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-              />
-            ) : (
-              <></>
-            )}
-            {diagnoza === 'mammae' ? (
-              <MammaeSection
-                histologie={histologie}
-                setHistologie={setHistologie}
-                histologieJine={histologieJine}
-                setHistologieJine={setHistologieJine}
-                lokalizace={lokalizace}
-                setLokalizace={setLokalizace}
-                kardiostimulator={kardiostimulator}
-                setKardiostimulator={setKardiostimulator}
-                kardiostimulatorDependentni={kardiostimulatorDependentni}
-                setKardiostimulatorDependentni={setKardiostimulatorDependentni}
-                kardiostimulatorKontrolaZajistena={
-                  kardiostimulatorKontrolaZajistena
-                }
-                setKardiostimulatorKontrolaZajistena={
-                  setKardiostimulatorKontrolaZajistena
-                }
-                fixace={fixace}
-                setFixace={setFixace}
-                fixaceJine={fixaceJine}
-                setFixaceJine={setFixaceJine}
-                poloha={poloha}
-                setPoloha={setPoloha}
-                polohaJine={polohaJine}
-                setPolohaJine={setPolohaJine}
-                zamer={zamer}
-                setZamer={setZamer}
-                frakcionace={frakcionace}
-                setFrakcionace={setFrakcionace}
-                frakcionaceJine={frakcionaceJine}
-                setFrakcionaceJine={setFrakcionaceJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-                boost={boost}
-                setBoost={setBoost}
-                boostJine={boostJine}
-                setBoostJine={setBoostJine}
-                dibh={dibh}
-                setDibh={setDibh}
-                rozsah={rozsah}
-                setRozsah={setRozsah}
-                rozsahJine={rozsahJine}
-                setRozsahJine={setRozsahJine}
-              />
-            ) : (
-              <></>
-            )}
-            {diagnoza === 'orl' ? (
-              <OrlSection
-                histologie={histologie}
-                setHistologie={setHistologie}
-                histologieJine={histologieJine}
-                setHistologieJine={setHistologieJine}
-                zamer={zamer}
-                setZamer={setZamer}
-                cilovyObjem={cilovyObjem}
-                setCilovyObjem={setCilovyObjem}
-                cilovyObjemJine={cilovyObjemJine}
-                setCilovyObjemJine={setCilovyObjemJine}
-                frakcionace={frakcionace}
-                setFrakcionace={setFrakcionace}
-                frakcionaceJine={frakcionaceJine}
-                setFrakcionaceJine={setFrakcionaceJine}
-                chemoterapie={chemoterapie}
-                setChemoterapie={setChemoterapie}
-                chemoterapieJine={chemoterapieJine}
-                setChemoterapieJine={setChemoterapieJine}
-                fixacePoloha={fixacePoloha}
-                setFixacePoloha={setFixacePoloha}
-                fixacePolohaJine={fixacePolohaJine}
-                setFixacePolohaJine={setFixacePolohaJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-                potrebaZavedeniPEG={potrebaZavedeniPEG}
-                setPotrebaZavedeniPEG={setPotrebaZavedeniPEG}
-                potrebaDoplneniPETCTMR={potrebaDoplneniPETCTMR}
-                setPotrebaDoplneniPETCTMR={setPotrebaDoplneniPETCTMR}
-                potrebaZavedeniPICC={potrebaZavedeniPICC}
-                setPotrebaZavedeniPICC={setPotrebaZavedeniPICC}
-              />
-            ) : (
-              <></>
-            )}
+            {diagnoza === 'sarkom' ? <SarkomSection /> : <></>}
+            {diagnoza === 'rektum' ? <RektumSection /> : <></>}
+            {diagnoza === 'plice' ? <PliceSection /> : <></>}
+            {diagnoza === 'univerzal' ? <UniverzalSection /> : <></>}
+            {diagnoza === 'mammae' ? <MammaeSection /> : <></>}
+            {diagnoza === 'orl' ? <OrlSection /> : <></>}
             {diagnoza === 'gynekologicke-nadory' ? (
-              <GynekologickeNadorySection
-                zamer={zamer}
-                setZamer={setZamer}
-                fixace={fixace}
-                setFixace={setFixace}
-                fixaceJine={fixaceJine}
-                setFixaceJine={setFixaceJine}
-                poloha={poloha}
-                setPoloha={setPoloha}
-                polohaJine={polohaJine}
-                setPolohaJine={setPolohaJine}
-                odbery={odbery}
-                setOdbery={setOdbery}
-                chemoterapie={chemoterapie}
-                setChemoterapie={setChemoterapie}
-                chemoterapieJine={chemoterapieJine}
-                setChemoterapieJine={setChemoterapieJine}
-                imunoterapie={imunoterapie}
-                setImunoterapie={setImunoterapie}
-                imunoterapieJine={imunoterapieJine}
-                setImunoterapieJine={setImunoterapieJine}
-                frakcionace={frakcionace}
-                setFrakcionace={setFrakcionace}
-                frakcionaceJine={frakcionaceJine}
-                setFrakcionaceJine={setFrakcionaceJine}
-                brachyterapie={brachyterapie}
-                setBrachyterapie={setBrachyterapie}
-              />
+              <GynekologickeNadorySection />
             ) : (
               <></>
             )}
@@ -469,156 +187,14 @@ function RadioterapieForm() {
                     NO: <br />
                   </p>
                 </div>
-                {diagnoza === 'sarkom' ? (
-                  <SarkomResults
-                    gender={gender}
-                    zamer={zamer}
-                    histologie={histologie}
-                    lokalizace={lokalizace}
-                    lokalizaceJine={lokalizaceJine}
-                    frakcionace={frakcionace}
-                    frakcionaceJine={frakcionaceJine}
-                    poloha={poloha}
-                    fixace={fixace}
-                    fixaceJine={fixaceJine}
-                    bolus={bolus}
-                    chemoterapie={chemoterapie}
-                    chemoterapieJine={chemoterapieJine}
-                    odbery={odbery}
-                  />
-                ) : (
-                  <></>
-                )}
-                {diagnoza === 'rektum' ? (
-                  <RektumResults
-                    gender={gender}
-                    zamer={zamer}
-                    histologie={histologie}
-                    histologieJine={histologieJine}
-                    lokalizace={lokalizace}
-                    frakcionace={frakcionace}
-                    frakcionaceJine={frakcionaceJine}
-                    poloha={poloha}
-                    polohaJine={polohaJine}
-                    fixace={fixace}
-                    fixaceJine={fixaceJine}
-                    chemoterapie={chemoterapie}
-                    chemoterapieJine={chemoterapieJine}
-                    odbery={odbery}
-                    rezim={rezim}
-                    odstup={odstup}
-                  />
-                ) : (
-                  <></>
-                )}
-                {diagnoza === 'plice' ? (
-                  <PliceResults
-                    gender={gender}
-                    zamer={zamer}
-                    histologie={histologie}
-                    histologieJine={histologieJine}
-                    lokalizace={lokalizace}
-                    frakcionace={frakcionace}
-                    frakcionaceJine={frakcionaceJine}
-                    poloha={poloha}
-                    polohaJine={polohaJine}
-                    fixace={fixace}
-                    fixaceJine={fixaceJine}
-                    konkomitantniChemoterapie={konkomitantniChemoterapie}
-                    konkomitantniChemoterapieJine={
-                      konkomitantniChemoterapieJine
-                    }
-                    odbery={odbery}
-                    vysaditCilenouLecbu={vysaditCilenouLecbu}
-                    kardiostimulator={kardiostimulator}
-                    kardiostimulatorKontrolaZajistena={
-                      kardiostimulatorKontrolaZajistena
-                    }
-                    fuzniPetCt={fuzniPetCt}
-                    fuzniMri={fuzniMri}
-                  />
-                ) : (
-                  <></>
-                )}
-                {diagnoza === 'univerzal' ? (
-                  <UniverzalResults
-                    gender={gender}
-                    zamer={zamer}
-                    poloha={poloha}
-                    polohaJine={polohaJine}
-                    fixace={fixace}
-                    fixaceJine={fixaceJine}
-                    odbery={odbery}
-                  />
-                ) : (
-                  <></>
-                )}
-                {diagnoza === 'mammae' ? (
-                  <MammaeResults
-                    gender={gender}
-                    zamer={zamer}
-                    histologie={histologie}
-                    histologieJine={histologieJine}
-                    lokalizace={lokalizace}
-                    frakcionace={frakcionace}
-                    frakcionaceJine={frakcionaceJine}
-                    poloha={poloha}
-                    polohaJine={polohaJine}
-                    fixace={fixace}
-                    fixaceJine={fixaceJine}
-                    odbery={odbery}
-                    kardiostimulator={kardiostimulator}
-                    kardiostimulatorKontrolaZajistena={
-                      kardiostimulatorKontrolaZajistena
-                    }
-                    boost={boost}
-                    boostJine={boostJine}
-                    dibh={dibh}
-                    rozsah={rozsah}
-                    rozsahJine={rozsahJine}
-                  />
-                ) : (
-                  <></>
-                )}
-                {diagnoza === 'orl' ? (
-                  <OrlResults
-                    gender={gender}
-                    zamer={zamer}
-                    histologie={histologie}
-                    histologieJine={histologieJine}
-                    cilovyObjem={cilovyObjem}
-                    cilovyObjemJine={cilovyObjemJine}
-                    frakcionace={frakcionace}
-                    frakcionaceJine={frakcionaceJine}
-                    chemoterapie={chemoterapie}
-                    chemoterapieJine={chemoterapieJine}
-                    fixacePoloha={fixacePoloha}
-                    fixacePolohaJine={fixacePolohaJine}
-                    odbery={odbery}
-                    potrebaZavedeniPEG={potrebaZavedeniPEG}
-                    potrebaDoplneniPETCTMR={potrebaDoplneniPETCTMR}
-                    potrebaZavedeniPICC={potrebaZavedeniPICC}
-                  />
-                ) : (
-                  <></>
-                )}
+                {diagnoza === 'sarkom' ? <SarkomResults /> : <></>}
+                {diagnoza === 'rektum' ? <RektumResults /> : <></>}
+                {diagnoza === 'plice' ? <PliceResults /> : <></>}
+                {diagnoza === 'univerzal' ? <UniverzalResults /> : <></>}
+                {diagnoza === 'mammae' ? <MammaeResults /> : <></>}
+                {diagnoza === 'orl' ? <OrlResults /> : <></>}
                 {diagnoza === 'gynekologicke-nadory' ? (
-                  <GynekologickeNadoryResults
-                    gender={gender}
-                    zamer={zamer}
-                    fixace={fixace}
-                    fixaceJine={fixaceJine}
-                    poloha={poloha}
-                    polohaJine={polohaJine}
-                    odbery={odbery}
-                    chemoterapie={chemoterapie}
-                    chemoterapieJine={chemoterapieJine}
-                    imunoterapie={imunoterapie}
-                    imunoterapieJine={imunoterapieJine}
-                    frakcionace={frakcionace}
-                    frakcionaceJine={frakcionaceJine}
-                    brachyterapie={brachyterapie}
-                  />
+                  <GynekologickeNadoryResults />
                 ) : (
                   <></>
                 )}
@@ -650,6 +226,14 @@ function RadioterapieForm() {
         </div>
       </Dialog>
     </form>
+  );
+}
+
+function RadioterapieForm() {
+  return (
+    <RadioterapieFormProvider>
+      <RadioterapieFormContent />
+    </RadioterapieFormProvider>
   );
 }
 

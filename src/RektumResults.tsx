@@ -1,40 +1,24 @@
-type RektumResultsProps = {
-  gender: string;
-  zamer: string;
-  histologie: string;
-  histologieJine: string;
-  lokalizace: string;
-  frakcionace: string;
-  frakcionaceJine: string;
-  poloha: string;
-  polohaJine: string;
-  fixace: string;
-  fixaceJine: string;
-  chemoterapie: string;
-  chemoterapieJine: string;
-  odbery: string;
-  rezim: string;
-  odstup: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function RektumResults({
-  gender,
-  zamer,
-  histologie,
-  histologieJine,
-  lokalizace,
-  frakcionace,
-  frakcionaceJine,
-  poloha,
-  polohaJine,
-  fixace,
-  fixaceJine,
-  chemoterapie,
-  chemoterapieJine,
-  odbery,
-  rezim,
-  odstup,
-}: RektumResultsProps) {
+function RektumResults() {
+  const {
+    gender,
+    zamer,
+    histologie,
+    histologieJine,
+    lokalizace,
+    frakcionace,
+    frakcionaceJine,
+    poloha,
+    polohaJine,
+    fixace,
+    fixaceJine,
+    chemoterapie,
+    chemoterapieJine,
+    odbery,
+    rezim,
+    odstup,
+  } = useRadioterapieForm();
   const getIndikace = (): string => {
     const histologieText = histologie === 'jine' ? histologieJine : histologie;
 

@@ -1,40 +1,24 @@
-type OrlResultsProps = {
-  gender: string;
-  zamer: string;
-  histologie: string;
-  histologieJine: string;
-  cilovyObjem: string;
-  cilovyObjemJine: string;
-  frakcionace: string;
-  frakcionaceJine: string;
-  chemoterapie: string;
-  chemoterapieJine: string;
-  fixacePoloha: string;
-  fixacePolohaJine: string;
-  odbery: string;
-  potrebaZavedeniPEG: string;
-  potrebaDoplneniPETCTMR: string;
-  potrebaZavedeniPICC: string;
-};
+import { useRadioterapieForm } from './hooks/useRadioterapieForm';
 
-function OrlResults({
-  gender,
-  zamer,
-  histologie,
-  histologieJine,
-  cilovyObjem,
-  cilovyObjemJine,
-  frakcionace,
-  frakcionaceJine,
-  chemoterapie,
-  chemoterapieJine,
-  fixacePoloha,
-  fixacePolohaJine,
-  odbery,
-  potrebaZavedeniPEG,
-  potrebaDoplneniPETCTMR,
-  potrebaZavedeniPICC,
-}: OrlResultsProps) {
+function OrlResults() {
+  const {
+    gender,
+    zamer,
+    histologie,
+    histologieJine,
+    cilovyObjem,
+    cilovyObjemJine,
+    frakcionace,
+    frakcionaceJine,
+    chemoterapie,
+    chemoterapieJine,
+    fixacePoloha,
+    fixacePolohaJine,
+    odbery,
+    potrebaZavedeniPEG,
+    potrebaDoplneniPETCTMR,
+    potrebaZavedeniPICC,
+  } = useRadioterapieForm();
   const histologieText = histologie === 'jine' ? histologieJine : histologie;
   const cilovyObjemText =
     cilovyObjem === 'jine' ? cilovyObjemJine : cilovyObjem;
